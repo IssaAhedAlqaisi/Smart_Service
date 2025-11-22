@@ -127,8 +127,67 @@ const startCamBtn = document.getElementById("start-camera");
 const stopCamBtn = document.getElementById("stop-camera");
 const videoEl = document.getElementById("camera-video");
 const cameraMsg = document.getElementById("camera-message");
+const overlayTextEl = document.getElementById("ar-overlay-text");
 
 let cameraStream = null;
+let analysisInterval = null;
+
+// كانفس مخفية لتحليل الفريم
+const analysisCanvas = document.createElement("canvas");
+const analysisCtx = analysisCanvas.getContext("2d");
+analysisCanvas.width = 160;
+analysisCanvas.height = 120;
+
+function analyzeFrame() {
+    if (!videoEl || videoEl.readyState < 2 || !analysisCtx || !overlayTextEl) return;
+
+    try {
+        analysisCtx.drawImage(videoEl, 0, 0, analysisCanvas.width, analysisCanvas.height);
+        const frame = analysisCtx.getImageData(0, 0, analysisCanvas.width, analysisCanvas.height).data;
+
+        let totalBrightness = 0;
+        const pixelCount = frame.length / 4;
+
+        // حساب السطوع المتوسط
+        for (let i = 0; i < frame.length; i += 4) {
+            const r = frame[i];
+            const g = frame[i + 1];
+            const b = frame[i + 2];
+            const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+            totalBrightness += lum;
+        }
+        const avgBrightness = totalBrightness / pixelCount;
+
+        // قياس تنوّع الألوان (تقريب بسيط)
+        let varSum = 0;
+        let sampleCount = 0;
+        for (let i = 0; i < frame.length; i += 40 * 4) {
+            const r = frame[i];
+            const g = frame[i + 1];
+            const b = frame[i + 2];
+            const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+            varSum += Math.abs(lum - avgBrightness);
+            sampleCount++;
+        }
+        const avgVar = sampleCount ? varSum / sampleCount : 0;
+
+        let suggestion = "مكان عام جيد لأجهزة الطاقة الذكية.";
+
+        if (avgBrightness > 175 && avgVar > 18) {
+            suggestion = "يبدو مكان خارجي مضيء 🌞 مناسب لألواح شمسية أو موقف شحن سيارة.";
+        } else if (avgBrightness > 140 && avgVar < 16) {
+            suggestion = "واضح أنه جدار مضيء 🧱 مكان ممتاز لتركيب شاحن جداري أو لوحة تحكم.";
+        } else if (avgBrightness < 85) {
+            suggestion = "الإضاءة هنا ضعيفة 💡 حاول تختار مكان أفتح أو زِد الإضاءة قبل التركيب.";
+        } else {
+            suggestion = "يبدو مكان داخلي مناسب لأجهزة مثل تكييف أو ثلاجة ذكية.";
+        }
+
+        overlayTextEl.textContent = suggestion;
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 async function startCamera() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -139,26 +198,49 @@ async function startCamera() {
     }
 
     try {
-        cameraMsg.textContent = "جاري طلب صلاحية الكاميرا...";
+        if (cameraMsg) {
+            cameraMsg.textContent = "جاري طلب صلاحية الكاميرا...";
+        }
+
         cameraStream = await navigator.mediaDevices.getUserMedia({
             video: {
                 facingMode: "environment" // الكاميرا الخلفية على الجوال إن أمكن
             }
         });
+
         if (videoEl) {
             videoEl.srcObject = cameraStream;
-            videoEl.play();
+            await videoEl.play();
         }
-        cameraMsg.textContent = "وجّه الكاميرا نحو الجدار أو الموقف اللي تفكر تركّب فيه الشاحن.";
+
+        if (cameraMsg) {
+            cameraMsg.textContent = "وجّه الكاميرا نحو المكان اللي تفكر تركّب فيه الشاحن أو الجهاز.";
+        }
+        if (overlayTextEl) {
+            overlayTextEl.textContent = "جاري تحليل المشهد… ثبّت يدك شوي 👍";
+        }
+
+        // تحليل المشهد كل 1.2 ثانية
+        if (analysisInterval) clearInterval(analysisInterval);
+        analysisInterval = setInterval(analyzeFrame, 1200);
+
     } catch (err) {
         console.error(err);
         if (cameraMsg) {
             cameraMsg.textContent = "ما قدرنا نفتح الكاميرا. تأكد من السماح بالوصول في إعدادات المتصفح.";
         }
+        if (overlayTextEl) {
+            overlayTextEl.textContent = "لم يتم فتح الكاميرا.";
+        }
     }
 }
 
 function stopCamera() {
+    if (analysisInterval) {
+        clearInterval(analysisInterval);
+        analysisInterval = null;
+    }
+
     if (cameraStream) {
         cameraStream.getTracks().forEach((track) => track.stop());
         cameraStream = null;
@@ -169,6 +251,9 @@ function stopCamera() {
     if (cameraMsg) {
         cameraMsg.textContent = "تم إيقاف الكاميرا. يمكنك تشغيلها مرة أخرى في أي وقت.";
     }
+    if (overlayTextEl) {
+        overlayTextEl.textContent = "هنا ممكن يركب الشاحن 👇";
+    }
 }
 
 if (startCamBtn) {
@@ -177,3 +262,4 @@ if (startCamBtn) {
 if (stopCamBtn) {
     stopCamBtn.addEventListener("click", stopCamera);
 }
+
