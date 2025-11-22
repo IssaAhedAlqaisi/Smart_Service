@@ -76,7 +76,7 @@ const summaryExtra = document.getElementById("summary-extra");
 const summaryTotal = document.getElementById("summary-total");
 
 function formatPrice(num) {
-    return num.toLocaleString("ar-SA") + " ر.س";
+    return num.toLocaleString("ar-JO") + " دينار";
 }
 
 function updateConfigurator() {
