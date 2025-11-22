@@ -122,33 +122,50 @@ configCheckboxes.forEach((cb) => {
 // تشغيل مبدئي للكونفيجريتور
 updateConfigurator();
 
-// قسم الكاميرا
+// قسم الكاميرا (يستخدم في قسم "افتح الكاميرا" و "مخطط منزلك الذكي")
 const startCamBtn = document.getElementById("start-camera");
 const stopCamBtn = document.getElementById("stop-camera");
-const videoEl = document.getElementById("camera-video");
+const startPlannerCamBtn = document.getElementById("start-planner-camera");
+const stopPlannerCamBtn = document.getElementById("stop-planner-camera");
+
+const mainVideoEl = document.getElementById("camera-video");
+const plannerVideoEl = document.getElementById("planner-video");
 const cameraMsg = document.getElementById("camera-message");
 const overlayTextEl = document.getElementById("ar-overlay-text");
 
 let cameraStream = null;
 let analysisInterval = null;
 
-// كانفس مخفية لتحليل الفريم
+// كانفس مخفية لتحليل الفريم (لقسم "افتح الكاميرا" فقط)
 const analysisCanvas = document.createElement("canvas");
 const analysisCtx = analysisCanvas.getContext("2d");
 analysisCanvas.width = 160;
 analysisCanvas.height = 120;
 
+function attachStreamToVideos() {
+    if (!cameraStream) return;
+    if (mainVideoEl) {
+        mainVideoEl.srcObject = cameraStream;
+        mainVideoEl.play().catch(() => {});
+    }
+    if (plannerVideoEl) {
+        plannerVideoEl.srcObject = cameraStream;
+        plannerVideoEl.play().catch(() => {});
+    }
+}
+
 function analyzeFrame() {
-    if (!videoEl || videoEl.readyState < 2 || !analysisCtx || !overlayTextEl) return;
+    // نستخدم فيديو "افتح الكاميرا" للتحليل، لو موجود
+    const videoSource = mainVideoEl || plannerVideoEl;
+    if (!videoSource || videoSource.readyState < 2 || !analysisCtx || !overlayTextEl) return;
 
     try {
-        analysisCtx.drawImage(videoEl, 0, 0, analysisCanvas.width, analysisCanvas.height);
+        analysisCtx.drawImage(videoSource, 0, 0, analysisCanvas.width, analysisCanvas.height);
         const frame = analysisCtx.getImageData(0, 0, analysisCanvas.width, analysisCanvas.height).data;
 
         let totalBrightness = 0;
         const pixelCount = frame.length / 4;
 
-        // حساب السطوع المتوسط
         for (let i = 0; i < frame.length; i += 4) {
             const r = frame[i];
             const g = frame[i + 1];
@@ -158,7 +175,6 @@ function analyzeFrame() {
         }
         const avgBrightness = totalBrightness / pixelCount;
 
-        // قياس تنوّع الألوان (تقريب بسيط)
         let varSum = 0;
         let sampleCount = 0;
         for (let i = 0; i < frame.length; i += 40 * 4) {
@@ -198,20 +214,19 @@ async function startCamera() {
     }
 
     try {
-        if (cameraMsg) {
-            cameraMsg.textContent = "جاري طلب صلاحية الكاميرا...";
-        }
-
-        cameraStream = await navigator.mediaDevices.getUserMedia({
-            video: {
-                facingMode: "environment" // الكاميرا الخلفية على الجوال إن أمكن
+        if (!cameraStream) {
+            if (cameraMsg) {
+                cameraMsg.textContent = "جاري طلب صلاحية الكاميرا...";
             }
-        });
 
-        if (videoEl) {
-            videoEl.srcObject = cameraStream;
-            await videoEl.play();
+            cameraStream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: "environment"
+                }
+            });
         }
+
+        attachStreamToVideos();
 
         if (cameraMsg) {
             cameraMsg.textContent = "وجّه الكاميرا نحو المكان اللي تفكر تركّب فيه الشاحن أو الجهاز.";
@@ -220,7 +235,6 @@ async function startCamera() {
             overlayTextEl.textContent = "جاري تحليل المشهد… ثبّت يدك شوي 👍";
         }
 
-        // تحليل المشهد كل 1.2 ثانية
         if (analysisInterval) clearInterval(analysisInterval);
         analysisInterval = setInterval(analyzeFrame, 1200);
 
@@ -245,9 +259,14 @@ function stopCamera() {
         cameraStream.getTracks().forEach((track) => track.stop());
         cameraStream = null;
     }
-    if (videoEl) {
-        videoEl.srcObject = null;
+
+    if (mainVideoEl) {
+        mainVideoEl.srcObject = null;
     }
+    if (plannerVideoEl) {
+        plannerVideoEl.srcObject = null;
+    }
+
     if (cameraMsg) {
         cameraMsg.textContent = "تم إيقاف الكاميرا. يمكنك تشغيلها مرة أخرى في أي وقت.";
     }
@@ -256,6 +275,7 @@ function stopCamera() {
     }
 }
 
+// أزرار قسم "افتح الكاميرا"
 if (startCamBtn) {
     startCamBtn.addEventListener("click", startCamera);
 }
@@ -263,3 +283,10 @@ if (stopCamBtn) {
     stopCamBtn.addEventListener("click", stopCamera);
 }
 
+// أزرار قسم "مخطط منزلك الذكي"
+if (startPlannerCamBtn) {
+    startPlannerCamBtn.addEventListener("click", startCamera);
+}
+if (stopPlannerCamBtn) {
+    stopPlannerCamBtn.addEventListener("click", stopCamera);
+}
