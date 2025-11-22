@@ -252,25 +252,46 @@
 
         <!-- مخطط منزلي ذكي (قريباً) -->
         <section class="smart-home-planner">
-            <div class="container planner-grid">
-                <div>
-                    <h2>مخطط منزلك الذكي (قريباً)</h2>
-                    <p>
-                        قريباً، تقدر تستخدم كاميرا جوالك لاستعراض مكان التكييف أو الثلاجة 
-                        أو شاحن السيارة داخل بيتك فعلياً باستخدام الواقع المعزز (AR) بدون 
-                        ما تنزل أي تطبيق.
-                    </p>
-                    <p class="coming-soon">الميزة تحت التطوير، احجز استشارة مجانية لاختيار الأجهزة المناسبة من الآن.</p>
-                    <a href="#contact" class="btn-outline">احجز استشارة</a>
-                </div>
-                <div class="planner-card">
-                    <div class="planner-placeholder">
-                        معاينة ثلاثية الأبعاد
+                    <div class="container planner-grid">
+                        <div>
+                            <h2>مخطط منزلك الذكي</h2>
+                            <p>
+                                استخدم الكاميرا عشان تشوف تقريباً كيف يطلع شكل شاحن السيارة على الجدار
+                                في بيتك أو في المرآب. بس وجّه الكاميرا نحو الجدار وخلي الشاحن الافتراضي
+                                فوق المكان اللي يناسبك.
+                            </p>
+                            <p class="coming-soon">
+                                هذا نموذج أولي بسيط، ممتاز كخطوة أولى قبل واقع معزز متقدم.
+                            </p>
+                            <div class="camera-buttons">
+                                <button type="button" id="start-planner-camera" class="btn-primary">ابدأ المعاينة بالكاميرا</button>
+                                <button type="button" id="stop-planner-camera" class="btn-outline">إيقاف المعاينة</button>
+                            </div>
+                            <p class="camera-message">
+                                جرّب توجّه الكاميرا على جدار فاضي في البيت أو المرآب وحاول تحاذي الشاحن مع المكان المناسب.
+                            </p>
+                        </div>
+                
+                        <div class="planner-card">
+                            <div class="planner-video-wrapper">
+                                <video id="planner-video" playsinline autoplay muted></video>
+                                <!-- الشاحن الافتراضي على الحائط -->
+                                <div class="charger-3d">
+                                    <div class="charger-body">
+                                        <div class="charger-light"></div>
+                                        <div class="charger-port"></div>
+                                    </div>
+                                    <div class="charger-cable"></div>
+                                </div>
+                            </div>
+                            <p>
+                                حرّك جوالك أو اللابتوب حتى يكون الجدار في منتصف الصورة،
+                                وحاول تتخيل حجم الشاحن في نفس المكان قبل التركيب الفعلي.
+                            </p>
+                        </div>
                     </div>
-                    <p>صوّب الكاميرا على المطبخ أو المرآب… وشاهد الأجهزة في مكانها قبل الشراء.</p>
-                </div>
-            </div>
         </section>
+
 
         <!-- قسم افتح الكاميرا -->
         <section id="ar-camera" class="ar-camera">
