@@ -165,7 +165,7 @@ body {
     background-repeat: no-repeat, no-repeat;
     /* نخلّي التدرّج يغطي كله، والصورة مصغرة (زووم آوت) */
     background-position: center top, center bottom;
-    background-size: cover, 30%;
+    background-size: cover, 80%;
     overflow: hidden;
 }
 
