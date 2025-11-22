@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart Service | Eco-System</title>
 
-    <!-- خط عربي جميل -->
+    <!-- خط عربي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
                 <a href="#energy-sections">طاقة منزلك</a>
                 <a href="#energy-simulator">محاكي الطاقة</a>
                 <a href="#charging-configurator">نظام الشحن</a>
+                <a href="#ar-camera">افتح الكاميرا</a>
                 <a href="#stories">قصص العملاء</a>
                 <a href="#knowledge">مركز المعرفة</a>
             </nav>
@@ -38,7 +39,18 @@
     <main>
         <!-- البانر الرئيسي -->
         <section id="hero" class="hero">
+            <!-- طبقة خلفية متحركة (شمس + كهرباء) -->
+            <div class="hero-visual-layer">
+                <div class="hero-sun"></div>
+                <div class="energy-line line-roof"></div>
+                <div class="energy-line line-house"></div>
+                <div class="energy-line line-car"></div>
+            </div>
+
+            <!-- تدرّج خفيف فوق الخلفية -->
             <div class="hero-overlay"></div>
+
+            <!-- المحتوى -->
             <div class="container hero-grid">
                 <div class="hero-text">
                     <h1>إيكو-سيستم للطاقة من <span>Smart Service</span></h1>
@@ -256,6 +268,37 @@
                         معاينة ثلاثية الأبعاد
                     </div>
                     <p>صوّب الكاميرا على المطبخ أو المرآب… وشاهد الأجهزة في مكانها قبل الشراء.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم افتح الكاميرا -->
+        <section id="ar-camera" class="ar-camera">
+            <div class="container ar-grid">
+                <div>
+                    <h2>افتح الكاميرا وشوف وين ببيتك</h2>
+                    <p>
+                        استخدم كاميرا جوالك أو اللابتوب عشان تشوف تقريباً وين تقدر تركّب
+                        شاحن السيارة أو الأجهزة الذكية في البيت.  
+                        هذي مو واقع معزز كامل، لكنها خطوة أولى عملية وسريعة.
+                    </p>
+                    <ul class="contact-list">
+                        <li>اضغط على زر <strong>"ابدأ الكاميرا"</strong>.</li>
+                        <li>اسمح للمتصفح باستخدام الكاميرا.</li>
+                        <li>وجّه الجوال باتجاه الجدار أو الموقف اللي تفكر تركّب فيه الشاحن.</li>
+                    </ul>
+                    <div class="camera-buttons">
+                        <button type="button" id="start-camera" class="btn-primary">ابدأ الكاميرا</button>
+                        <button type="button" id="stop-camera" class="btn-outline">إيقاف الكاميرا</button>
+                    </div>
+                    <p id="camera-message" class="camera-message">
+                        ملاحظة: تحتاج تستخدم https (مثل GitHub Pages) عشان بعض المتصفحات تسمح بالكاميرا.
+                    </p>
+                </div>
+
+                <div class="ar-card">
+                    <video id="camera-video" playsinline autoplay muted></video>
+                    <div class="ar-overlay">هنا ممكن يركب الشاحن 👇</div>
                 </div>
             </div>
         </section>
