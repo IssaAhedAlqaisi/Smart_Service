@@ -158,12 +158,17 @@ body {
     position: relative;
     min-height: 85vh;
     padding: 80px 0 60px;
-    /* غيّر اسم الصورة حسب اسم الملف عندك */
+    /* التدرّج + الصورة */
     background:
-        linear-gradient(120deg, rgba(255, 247, 207,  0.30), rgba(255, 255, 255, 0.9)),
-        url("solar-house.png") center/cover no-repeat;
+        linear-gradient(120deg, rgba(255, 247, 207, 0.25), rgba(255, 255, 255, 0.9)),
+        url("solar-house.png");
+    background-repeat: no-repeat, no-repeat;
+    /* نخلّي التدرّج يغطي كله، والصورة مصغرة (زووم آوت) */
+    background-position: center top, center bottom;
+    background-size: cover, 60%;
     overflow: hidden;
 }
+
 
 /* طبقة الخلفية المتحركة */
 .hero-visual-layer {
