@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Service | Eco-System</title>
+
+    <!-- خط عربي جميل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- شريط علوي -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <div class="logo-mark">SS</div>
+                <div class="logo-text">
+                    <span class="logo-title">Smart Service</span>
+                    <span class="logo-subtitle">Eco-System للطاقة الذكية</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#hero">الرئيسية</a>
+                <a href="#energy-sections">طاقة منزلك</a>
+                <a href="#energy-simulator">محاكي الطاقة</a>
+                <a href="#charging-configurator">نظام الشحن</a>
+                <a href="#stories">قصص العملاء</a>
+                <a href="#knowledge">مركز المعرفة</a>
+            </nav>
+            <a href="#contact" class="btn-primary nav-cta">تواصل معنا</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- البانر الرئيسي -->
+        <section id="hero" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1>إيكو-سيستم للطاقة من <span>Smart Service</span></h1>
+                    <p>
+                        منصة متكاملة تربط بين <strong>طاقة منزلك</strong> و<strong>طاقة تنقلك</strong> 
+                        في تجربة واحدة بسيطة وذكية. شاحن سيارتك وأجهزتك المنزلية جزء من نفس النظام.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#energy-simulator" class="btn-primary">جرّب محاكي الطاقة</a>
+                        <a href="#charging-configurator" class="btn-outline">ابنِ نظام الشحن الخاص بك</a>
+                    </div>
+                    <div class="hero-tags">
+                        <span>البيت الذكي</span>
+                        <span>شحن السيارات الكهربائية</span>
+                        <span>توفير الطاقة</span>
+                    </div>
+                </div>
+
+                <div class="hero-dashboard">
+                    <div class="dashboard-card home-energy">
+                        <h3>طاقة منزلك</h3>
+                        <p>متابعة استهلاك التكييف، الثلاجة، الغسالة وغيرها من الأجهزة.</p>
+                        <div class="metrics">
+                            <div>
+                                <span class="label">استهلاك اليوم</span>
+                                <span class="value" id="home-today">12.4 kWh</span>
+                            </div>
+                            <div>
+                                <span class="label">توفيرك هذا الشهر</span>
+                                <span class="value">18٪</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-connector">
+                        <span class="pulse-dot"></span>
+                        <span class="connector-line"></span>
+                    </div>
+
+                    <div class="dashboard-card mobility-energy">
+                        <h3>طاقة تنقلك</h3>
+                        <p>شحن ذكي لسيارتك الكهربائية من نفس نظام الطاقة المنزلي.</p>
+                        <div class="metrics">
+                            <div>
+                                <span class="label">نسبة شحن السيارة</span>
+                                <span class="value" id="car-charge">72٪</span>
+                            </div>
+                            <div>
+                                <span class="label">رحلتك القادمة</span>
+                                <span class="value">+180 كم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم طاقة منزلك / طاقة تنقلك -->
+        <section id="energy-sections" class="energy-sections">
+            <div class="container">
+                <div class="toggle-wrapper">
+                    <button class="toggle-btn active" data-target="home-section">طاقة منزلك</button>
+                    <button class="toggle-btn" data-target="mobility-section">طاقة تنقلك</button>
+                </div>
+
+                <div class="energy-panels">
+                    <div id="home-section" class="energy-panel active">
+                        <div class="panel-text">
+                            <h2>طاقة منزلك</h2>
+                            <p>
+                                أجهزة كهربائية ذكية، استهلاك أقل، راحة أكثر.  
+                                Smart Service تساعدك على اختيار الأجهزة الموفرة وإدارتها ضمن نظام موحّد.
+                            </p>
+                            <ul>
+                                <li>ثلاجات وأجهزة مطبخ عالية الكفاءة.</li>
+                                <li>وحدات تكييف ذكية تتحكم بها من جوالك.</li>
+                                <li>أنظمة مراقبة استهلاك الطاقة في المنزل.</li>
+                            </ul>
+                        </div>
+                        <div class="panel-card-grid">
+                            <div class="mini-card">
+                                <h4>تكييف ذكي</h4>
+                                <p>تحكم بدرجة الحرارة وجدولة التشغيل لتوفير الفاتورة.</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>مراقبة الاستهلاك</h4>
+                                <p>تابع استهلاك كل جهاز في لوحة تحكم واحدة.</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>أجهزة موفرة للطاقة</h4>
+                                <p>اختيارات مدروسة لمساعدتك على الترشيد.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mobility-section" class="energy-panel">
+                        <div class="panel-text">
+                            <h2>طاقة تنقلك</h2>
+                            <p>
+                                حلول شحن للسيارات الكهربائية في المنزل أو العمل.  
+                                اختر شاحن يناسب نمط تنقلك ويعمل بتناغم مع طاقة منزلك.
+                            </p>
+                            <ul>
+                                <li>شواحن منزلية بقدرات مختلفة.</li>
+                                <li>شواحن سريعة للأعمال والمواقف العامة.</li>
+                                <li>لوحة تحكم لمتابعة الشحن والاستهلاك.</li>
+                            </ul>
+                        </div>
+                        <div class="panel-card-grid">
+                            <div class="mini-card">
+                                <h4>شحن منزلي</h4>
+                                <p>اشحن سيارتك وأنت نائم، واستيقظ على بطارية ممتلئة.</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>شحن تجاري</h4>
+                                <p>حلول للشركات والمجمعات السكنية.</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>إدارة الأسطول</h4>
+                                <p>متابعة شحن عدة سيارات من لوحة واحدة.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- محاكي الطاقة -->
+        <section id="energy-simulator" class="energy-simulator">
+            <div class="container">
+                <div class="section-header">
+                    <h2>محاكي الطاقة</h2>
+                    <p>شوف كيف يتوزع استهلاك طاقتك بين المنزل والسيارة الكهربائية، واحسب التوفير التقريبي.</p>
+                </div>
+
+                <div class="simulator-grid">
+                    <form class="sim-form" id="sim-form">
+                        <h3>أجهزة المنزل</h3>
+                        <label>
+                            استهلاك التكييف الشهري (kWh)
+                            <input type="number" id="ac-kwh" value="250" min="0" />
+                        </label>
+                        <label>
+                            استهلاك الثلاجة الشهري (kWh)
+                            <input type="number" id="fridge-kwh" value="90" min="0" />
+                        </label>
+                        <label>
+                            استهلاك الغسالة الشهري (kWh)
+                            <input type="number" id="washer-kwh" value="45" min="0" />
+                        </label>
+                        <label>
+                            أجهزة أخرى (kWh)
+                            <input type="number" id="other-kwh" value="70" min="0" />
+                        </label>
+
+                        <h3>سيارتك الكهربائية</h3>
+                        <label>
+                            موديل السيارة (تقريبي)
+                            <select id="car-model">
+                                <option value="40">سيارة مدمجة (بطارية ~ 40 kWh)</option>
+                                <option value="60" selected>سيارة متوسطة (بطارية ~ 60 kWh)</option>
+                                <option value="75">سيارة SUV (بطارية ~ 75 kWh)</option>
+                            </select>
+                        </label>
+                        <label>
+                            عدد الكيلومترات شهرياً
+                            <input type="number" id="car-km" value="1200" min="0" />
+                        </label>
+
+                        <button type="submit" class="btn-primary full-width">احسب الاستهلاك والتوفير</button>
+                    </form>
+
+                    <div class="sim-result" id="sim-result">
+                        <h3>النتائج التقديرية</h3>
+                        <div class="result-row">
+                            <span>استهلاك المنزل الشهري:</span>
+                            <strong id="home-consumption">– kWh</strong>
+                        </div>
+                        <div class="result-row">
+                            <span>استهلاك السيارة الشهري:</span>
+                            <strong id="car-consumption">– kWh</strong>
+                        </div>
+                        <div class="result-row total">
+                            <span>إجمالي استهلاكك الشهري:</span>
+                            <strong id="total-consumption">– kWh</strong>
+                        </div>
+                        <div class="result-row saving">
+                            <span>التوفير المتوقع مع أجهزة وشحن ذكي:</span>
+                            <strong id="saving-percent">حتى 20٪</strong>
+                        </div>
+
+                        <div class="recommendation" id="sim-recommendation">
+                            املأ البيانات واضغط على "احسب" لعرض توصيات مخصّصة من Smart Service.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- مخطط منزلي ذكي (قريباً) -->
+        <section class="smart-home-planner">
+            <div class="container planner-grid">
+                <div>
+                    <h2>مخطط منزلك الذكي (قريباً)</h2>
+                    <p>
+                        قريباً، تقدر تستخدم كاميرا جوالك لاستعراض مكان التكييف أو الثلاجة 
+                        أو شاحن السيارة داخل بيتك فعلياً باستخدام الواقع المعزز (AR) بدون 
+                        ما تنزل أي تطبيق.
+                    </p>
+                    <p class="coming-soon">الميزة تحت التطوير، احجز استشارة مجانية لاختيار الأجهزة المناسبة من الآن.</p>
+                    <a href="#contact" class="btn-outline">احجز استشارة</a>
+                </div>
+                <div class="planner-card">
+                    <div class="planner-placeholder">
+                        معاينة ثلاثية الأبعاد
+                    </div>
+                    <p>صوّب الكاميرا على المطبخ أو المرآب… وشاهد الأجهزة في مكانها قبل الشراء.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بناء نظام الشحن -->
+        <section id="charging-configurator" class="charging-configurator">
+            <div class="container">
+                <div class="section-header">
+                    <h2>ابنِ نظام الشحن الخاص بك</h2>
+                    <p>اختر نوع الشاحن وطريقة الاستخدام لتحصل على تقدير سريع للتكلفة الأنسب.</p>
+                </div>
+
+                <div class="config-grid">
+                    <div class="config-options">
+                        <h3>نوع الشاحن</h3>
+                        <div class="option-buttons" id="charger-type-group">
+                            <button type="button" class="option-btn active" data-type="home" data-price="2800">
+                                شاحن منزلي
+                            </button>
+                            <button type="button" class="option-btn" data-type="fast" data-price="7500">
+                                شاحن سريع
+                            </button>
+                            <button type="button" class="option-btn" data-type="business" data-price="12000">
+                                حل تجاري للشركات
+                            </button>
+                        </div>
+
+                        <h3>خيارات إضافية</h3>
+                        <label class="checkbox-row">
+                            <input type="checkbox" id="smart-panel" data-extra="900" />
+                            <span>لوحة تحكم ذكية لمتابعة الشحن</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" id="long-cable" data-extra="300" />
+                            <span>كابل أطول (حتى 10 متر)</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" id="install-service" data-extra="600" checked />
+                            <span>خدمة تركيب وتشغيل في الموقع</span>
+                        </label>
+                    </div>
+
+                    <div class="config-summary">
+                        <h3>تقدير النظام</h3>
+                        <div class="summary-row">
+                            <span>نوع الشاحن:</span>
+                            <strong id="summary-type">شاحن منزلي</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>التكلفة الأساسية:</span>
+                            <strong id="summary-base">2,800 ر.س</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>الإضافات:</span>
+                            <strong id="summary-extra">900 ر.س</strong>
+                        </div>
+                        <div class="summary-row total">
+                            <span>التكلفة التقريبية الإجمالية:</span>
+                            <strong id="summary-total">3,700 ر.س</strong>
+                        </div>
+
+                        <p class="note">
+                            الأسعار تقريبية لغرض التقدير فقط.  
+                            تواصل معنا لتحصل على عرض سعر مفصّل يناسب مشروعك أو منزلك.
+                        </p>
+                        <a href="#contact" class="btn-primary full-width">اطلب عرض سعر تفصيلي</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قصص العملاء -->
+        <section id="stories" class="stories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>قصص عملائنا</h2>
+                    <p>كيف غيّر Eco-System من Smart Service حياة عملائنا اليومية.</p>
+                </div>
+
+                <div class="story-grid">
+                    <article class="story-card">
+                        <h3>عائلة أحمد</h3>
+                        <p>
+                            ركّبوا أجهزة منزلية ذكية مع نظام مراقبة استهلاك.  
+                            النتيجة: فاتورة كهرباء أقل وراحة بال أكثر، بدون ما يضحّون بالراحة.
+                        </p>
+                        <span class="story-tag">راحة وأمان</span>
+                    </article>
+
+                    <article class="story-card">
+                        <h3>المهندس خالد</h3>
+                        <p>
+                            اعتمد شاحن منزلي ذكي لسيارته الكهربائية مع جدولة للشحن الليلي.  
+                            النتيجة: شحن أرخص، بطارية جاهزة كل صباح، وتحكم كامل من الجوال.
+                        </p>
+                        <span class="story-tag">تكنولوجيا وكفاءة</span>
+                    </article>
+
+                    <article class="story-card">
+                        <h3>شركة الريم للأعمال</h3>
+                        <p>
+                            نفّذنا لهم حل شحن تجاري لمواقف الموظفين والعملاء.  
+                            النتيجة: قيمة مضافة للشركة وصورة مستدامة أمام الزوار.
+                        </p>
+                        <span class="story-tag">حلول تجارية</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- مركز المعرفة -->
+        <section id="knowledge" class="knowledge">
+            <div class="container">
+                <div class="section-header">
+                    <h2>مركز المعرفة</h2>
+                    <p>دليل مبسّط يساعدك تفهم عالم الطاقة الذكية والسيارات الكهربائية.</p>
+                </div>
+
+                <div class="knowledge-grid">
+                    <article class="knowledge-card">
+                        <h3>دليل المبتدئين للسيارات الكهربائية</h3>
+                        <p>إيش الفرق بين أنواع الشواحن؟ كم يكلف الشحن؟ وكيف تختار الشاحن المناسب لبيتك؟</p>
+                        <span class="knowledge-tag">سيارات كهربائية</span>
+                    </article>
+
+                    <article class="knowledge-card">
+                        <h3>كيف تقلل فاتورة الكهرباء بأجهزتك الذكية</h3>
+                        <p>نصائح عملية لاختيار الأجهزة الموفرة، وضبط الإعدادات الذكية لتحقيق أفضل توفير.</p>
+                        <span class="knowledge-tag">ترشيد الطاقة</span>
+                    </article>
+
+                    <article class="knowledge-card">
+                        <h3>هل منزلك جاهز لشاحن سيارة كهربائية؟</h3>
+                        <p>الأمور الفنية البسيطة اللي تحتاج تعرفها قبل تركيب شاحن منزلي.</p>
+                        <span class="knowledge-tag">شحن منزلي</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- تواصل معنا -->
+        <section id="contact" class="contact">
+            <div class="container contact-grid">
+                <div>
+                    <h2>تواصل مع Smart Service</h2>
+                    <p>
+                        جاهزين نساعدك تبني نظام طاقة متكامل لمنزلك وتنقلك.  
+                        أرسل لنا احتياجك، ونرجع لك بتوصيات وعرض سعر.
+                    </p>
+                    <ul class="contact-list">
+                        <li>بريد إلكتروني: info@smartservice.com</li>
+                        <li>هاتف / واتساب: 0000 000 000</li>
+                        <li>الموقع: الرياض - المملكة العربية السعودية (مثال)</li>
+                    </ul>
+                </div>
+                <form class="contact-form">
+                    <label>
+                        الاسم
+                        <input type="text" placeholder="اكتب اسمك الكامل" />
+                    </label>
+                    <label>
+                        البريد الإلكتروني
+                        <input type="email" placeholder="example@email.com" />
+                    </label>
+                    <label>
+                        نوع الطلب
+                        <select>
+                            <option>استشارة أجهزة منزلية</option>
+                            <option>نظام شحن منزلي</option>
+                            <option>حلول شحن تجارية</option>
+                            <option>أخرى</option>
+                        </select>
+                    </label>
+                    <label>
+                        تفاصيل إضافية
+                        <textarea rows="4" placeholder="اكتب لنا تفاصيل مختصرة عن احتياجك"></textarea>
+                    </label>
+                    <button type="submit" class="btn-primary full-width">إرسال الطلب</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <span>© 2025 Smart Service - جميع الحقوق محفوظة</span>
+            <span>Eco-System للطاقة المنزلية والتنقل الذكي</span>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
