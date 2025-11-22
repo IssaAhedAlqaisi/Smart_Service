@@ -1,3 +1,12 @@
+// خَلّي الصفحة دائماً تبدأ من الأعلى عند الفتح
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
+
 // تبديل بين "طاقة منزلك" و "طاقة تنقلك"
 const toggleButtons = document.querySelectorAll(".toggle-btn");
 const panels = document.querySelectorAll(".energy-panel");
@@ -38,7 +47,7 @@ if (simForm) {
         const homeTotal = ac + fridge + washer + other;
 
         const km = Number(document.getElementById("car-km").value) || 0;
-        // نفترض استهلاك 0.15 kWh لكل كيلومتر (15 kWh لكل 100 كم تقريباً)
+        // نفترض 0.15 kWh لكل كيلومتر
         const carTotal = +(km * 0.15).toFixed(1);
 
         const total = +(homeTotal + carTotal).toFixed(1);
@@ -47,7 +56,6 @@ if (simForm) {
         carConsumptionEl.textContent = `${carTotal.toFixed(1)} kWh`;
         totalConsumptionEl.textContent = `${total.toFixed(1)} kWh`;
 
-        // توفير تقريبي بين 15% و 22% حسب الاستهلاك
         let saving = 18;
         if (total > 900) saving = 22;
         else if (total < 500) saving = 15;
@@ -72,7 +80,11 @@ function formatPrice(num) {
 }
 
 function updateConfigurator() {
+    if (!chargerTypeGroup) return;
+
     const activeTypeBtn = chargerTypeGroup.querySelector(".option-btn.active");
+    if (!activeTypeBtn) return;
+
     const basePrice = Number(activeTypeBtn.getAttribute("data-price")) || 0;
 
     let extras = 0;
@@ -85,7 +97,6 @@ function updateConfigurator() {
 
     const total = basePrice + extras;
 
-    // نص نوع الشاحن
     summaryType.textContent = activeTypeBtn.textContent.trim();
     summaryBase.textContent = formatPrice(basePrice);
     summaryExtra.textContent = formatPrice(extras);
@@ -108,5 +119,61 @@ configCheckboxes.forEach((cb) => {
     cb.addEventListener("change", updateConfigurator);
 });
 
-// تشغيل مبدئي
+// تشغيل مبدئي للكونفيجريتور
 updateConfigurator();
+
+// قسم الكاميرا
+const startCamBtn = document.getElementById("start-camera");
+const stopCamBtn = document.getElementById("stop-camera");
+const videoEl = document.getElementById("camera-video");
+const cameraMsg = document.getElementById("camera-message");
+
+let cameraStream = null;
+
+async function startCamera() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        if (cameraMsg) {
+            cameraMsg.textContent = "المتصفح لا يدعم فتح الكاميرا. جرّب متصفح أحدث مثل Chrome أو Edge.";
+        }
+        return;
+    }
+
+    try {
+        cameraMsg.textContent = "جاري طلب صلاحية الكاميرا...";
+        cameraStream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: "environment" // الكاميرا الخلفية على الجوال إن أمكن
+            }
+        });
+        if (videoEl) {
+            videoEl.srcObject = cameraStream;
+            videoEl.play();
+        }
+        cameraMsg.textContent = "وجّه الكاميرا نحو الجدار أو الموقف اللي تفكر تركّب فيه الشاحن.";
+    } catch (err) {
+        console.error(err);
+        if (cameraMsg) {
+            cameraMsg.textContent = "ما قدرنا نفتح الكاميرا. تأكد من السماح بالوصول في إعدادات المتصفح.";
+        }
+    }
+}
+
+function stopCamera() {
+    if (cameraStream) {
+        cameraStream.getTracks().forEach((track) => track.stop());
+        cameraStream = null;
+    }
+    if (videoEl) {
+        videoEl.srcObject = null;
+    }
+    if (cameraMsg) {
+        cameraMsg.textContent = "تم إيقاف الكاميرا. يمكنك تشغيلها مرة أخرى في أي وقت.";
+    }
+}
+
+if (startCamBtn) {
+    startCamBtn.addEventListener("click", startCamera);
+}
+if (stopCamBtn) {
+    stopCamBtn.addEventListener("click", stopCamera);
+}
