@@ -7,6 +7,101 @@ window.addEventListener("load", () => {
     window.scrollTo(0, 0);
 });
 
+// شاشة البداية - الشحن قبل الدخول للموقع
+const chargeOverlay = document.getElementById("charge-overlay");
+const chargeButton = document.getElementById("charge-button");
+const chargeStatus = document.getElementById("charge-status");
+const chargeDots = document.querySelectorAll(".charge-dot");
+
+let chargeLevel = 0;        // من 0 إلى 6
+let chargeInterval = null;
+let isCharging = false;
+
+// لو حاب تتخطى شاشة البداية في الزيارات القادمة، فعّل هذا الجزء:
+// if (localStorage.getItem("smartServiceCharged") === "1" && chargeOverlay) {
+//     chargeOverlay.classList.add("hidden");
+// }
+
+function updateChargeDots(level) {
+    chargeDots.forEach((dot, index) => {
+        if (index < level) {
+            dot.classList.add("active");
+        } else {
+            dot.classList.remove("active");
+        }
+    });
+}
+
+function finishCharging() {
+    clearInterval(chargeInterval);
+    chargeInterval = null;
+    isCharging = false;
+
+    if (chargeStatus) {
+        chargeStatus.textContent = "تم الشحن ✅ جاري الدخول...";
+    }
+
+    // حفظ حالة أنه تم الشحن مرة (اختياري)
+    // localStorage.setItem("smartServiceCharged", "1");
+
+    // بعد شوي نخفي الشاشة
+    setTimeout(() => {
+        if (chargeOverlay) {
+            chargeOverlay.classList.add("hidden");
+        }
+    }, 600);
+}
+
+function startCharging(event) {
+    event.preventDefault();
+    if (!chargeOverlay || isCharging) return;
+
+    isCharging = true;
+    chargeLevel = 0;
+    updateChargeDots(0);
+
+    if (chargeStatus) {
+        chargeStatus.textContent = "جاري الشحن... استمر بالضغط";
+    }
+
+    chargeInterval = setInterval(() => {
+        chargeLevel++;
+        if (chargeLevel > 6) chargeLevel = 6;
+        updateChargeDots(chargeLevel);
+
+        if (chargeLevel >= 6) {
+            finishCharging();
+        }
+    }, 350); // كل 0.35 ثانية تزيد نقطة
+}
+
+function stopCharging() {
+    if (!isCharging) return;
+    isCharging = false;
+
+    clearInterval(chargeInterval);
+    chargeInterval = null;
+
+    // لو ما اكتمل الشحن ترجع صفر
+    if (chargeLevel < 6) {
+        chargeLevel = 0;
+        updateChargeDots(0);
+        if (chargeStatus) {
+            chargeStatus.textContent = "اضغط واستمر حتى يكتمل الشحن";
+        }
+    }
+}
+
+if (chargeButton && chargeOverlay) {
+    // للماوس
+    chargeButton.addEventListener("mousedown", startCharging);
+    window.addEventListener("mouseup", stopCharging);
+
+    // للمس على الجوال
+    chargeButton.addEventListener("touchstart", startCharging);
+    window.addEventListener("touchend", stopCharging);
+}
+
 // تبديل بين "طاقة منزلك" و "طاقة تنقلك"
 const toggleButtons = document.querySelectorAll(".toggle-btn");
 const panels = document.querySelectorAll(".energy-panel");
