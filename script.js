@@ -7,13 +7,15 @@ window.addEventListener("load", () => {
     window.scrollTo(0, 0);
 });
 
-// شاشة البداية - الشحن قبل الدخول للموقع
+// =======================
+// شاشة البداية - الشحن
+// =======================
 const chargeOverlay = document.getElementById("charge-overlay");
 const chargeButton = document.getElementById("charge-button");
 const chargeStatus = document.getElementById("charge-status");
 const chargeDots = document.querySelectorAll(".charge-dot");
 
-let chargeLevel = 0;        // من 0 إلى 6
+let chargeLevel = 0; // من 0 إلى 6
 let chargeInterval = null;
 let isCharging = false;
 
@@ -38,13 +40,11 @@ function finishCharging() {
     isCharging = false;
 
     if (chargeStatus) {
-        chargeStatus.textContent = "تم الشحن ✅ جاري الدخول...";
+        chargeStatus.textContent = "تم الشحن ✅ جاري الدخول للموقع...";
     }
 
-    // حفظ حالة أنه تم الشحن مرة (اختياري)
     // localStorage.setItem("smartServiceCharged", "1");
 
-    // بعد شوي نخفي الشاشة
     setTimeout(() => {
         if (chargeOverlay) {
             chargeOverlay.classList.add("hidden");
@@ -72,7 +72,7 @@ function startCharging(event) {
         if (chargeLevel >= 6) {
             finishCharging();
         }
-    }, 350); // كل 0.35 ثانية تزيد نقطة
+    }, 350);
 }
 
 function stopCharging() {
@@ -82,12 +82,11 @@ function stopCharging() {
     clearInterval(chargeInterval);
     chargeInterval = null;
 
-    // لو ما اكتمل الشحن ترجع صفر
     if (chargeLevel < 6) {
         chargeLevel = 0;
         updateChargeDots(0);
         if (chargeStatus) {
-            chargeStatus.textContent = "اضغط واستمر حتى يكتمل الشحن";
+            chargeStatus.textContent = "اضغط واستمر حتى يكتمل الشحن ويفتح الموقع";
         }
     }
 }
@@ -102,7 +101,9 @@ if (chargeButton && chargeOverlay) {
     window.addEventListener("touchend", stopCharging);
 }
 
-// تبديل بين "طاقة منزلك" و "طاقة تنقلك"
+// =======================
+// تبديل التبويبات (أقسام / خدمات)
+// =======================
 const toggleButtons = document.querySelectorAll(".toggle-btn");
 const panels = document.querySelectorAll(".energy-panel");
 
@@ -122,7 +123,9 @@ toggleButtons.forEach((btn) => {
     });
 });
 
-// محاكي الطاقة
+// =======================
+// حاسبة الصيانة التقديرية
+// =======================
 const simForm = document.getElementById("sim-form");
 const homeConsumptionEl = document.getElementById("home-consumption");
 const carConsumptionEl = document.getElementById("car-consumption");
@@ -130,49 +133,62 @@ const totalConsumptionEl = document.getElementById("total-consumption");
 const savingPercentEl = document.getElementById("saving-percent");
 const simRecommendation = document.getElementById("sim-recommendation");
 
+function formatPrice(num) {
+    return num.toLocaleString("ar-JO") + " دينار";
+}
+
 if (simForm) {
     simForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const ac = Number(document.getElementById("ac-kwh").value) || 0;
-        const fridge = Number(document.getElementById("fridge-kwh").value) || 0;
-        const washer = Number(document.getElementById("washer-kwh").value) || 0;
-        const other = Number(document.getElementById("other-kwh").value) || 0;
+        const acCount = Number(document.getElementById("ac-count").value) || 0;
+        const applianceCount = Number(document.getElementById("appliance-count").value) || 0;
+        const plumbingCount = Number(document.getElementById("plumbing-count").value) || 0;
+        const itCount = Number(document.getElementById("it-count").value) || 0;
+        const visitFactor = Number(document.getElementById("visit-type").value) || 1;
 
-        const homeTotal = ac + fridge + washer + other;
+        // أرقام تقريبية بسيطة
+        let inspection = 10; // كشف أساسي
+        inspection += acCount * 2;
+        inspection += applianceCount * 1.5;
+        inspection += plumbingCount * 3;
+        inspection += itCount * 2;
 
-        const km = Number(document.getElementById("car-km").value) || 0;
-        // نفترض 0.15 kWh لكل كيلومتر
-        const carTotal = +(km * 0.15).toFixed(1);
+        let repair =
+            acCount * 8 +
+            applianceCount * 10 +
+            plumbingCount * 12 +
+            itCount * 9;
 
-        const total = +(homeTotal + carTotal).toFixed(1);
+        inspection *= visitFactor;
+        repair *= visitFactor;
 
-        homeConsumptionEl.textContent = `${homeTotal.toFixed(1)} kWh`;
-        carConsumptionEl.textContent = `${carTotal.toFixed(1)} kWh`;
-        totalConsumptionEl.textContent = `${total.toFixed(1)} kWh`;
+        const total = inspection + repair;
+
+        homeConsumptionEl.textContent = formatPrice(inspection.toFixed(0));
+        carConsumptionEl.textContent = formatPrice(repair.toFixed(0));
+        totalConsumptionEl.textContent = formatPrice(total.toFixed(0));
 
         let saving = 18;
-        if (total > 900) saving = 22;
-        else if (total < 500) saving = 15;
+        if (total > 200) saving = 25;
+        else if (total < 80) saving = 12;
 
         savingPercentEl.textContent = `حتى ${saving}%`;
 
         simRecommendation.textContent =
-            "بناءً على استهلاكك التقديري، نوصي بمزيج من أجهزة موفرة للطاقة مع شاحن منزلي ذكي. " +
-            "تواصل مع Smart Service للحصول على دراسة تفصيلية لاستهلاكك وخطة توفير مخصّصة.";
+            "هذا تقدير مبدئي فقط. بعد زيارة الفني وتشخيص العطل بشكل دقيق، " +
+            "يتم تأكيد السعر النهائي. ننصحك بالاشتراك في عقد صيانة لتقليل التكاليف على المدى الطويل.";
     });
 }
 
-// كونفيجريتور الشحن
+// =======================
+// كونفيجريتور باقات الصيانة
+// =======================
 const chargerTypeGroup = document.getElementById("charger-type-group");
 const summaryType = document.getElementById("summary-type");
 const summaryBase = document.getElementById("summary-base");
 const summaryExtra = document.getElementById("summary-extra");
 const summaryTotal = document.getElementById("summary-total");
-
-function formatPrice(num) {
-    return num.toLocaleString("ar-JO") + " دينار";
-}
 
 function updateConfigurator() {
     if (!chargerTypeGroup) return;
@@ -203,7 +219,9 @@ if (chargerTypeGroup) {
         const btn = e.target.closest(".option-btn");
         if (!btn) return;
 
-        chargerTypeGroup.querySelectorAll(".option-btn").forEach((b) => b.classList.remove("active"));
+        chargerTypeGroup
+            .querySelectorAll(".option-btn")
+            .forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         updateConfigurator();
     });
@@ -217,7 +235,9 @@ configCheckboxes.forEach((cb) => {
 // تشغيل مبدئي للكونفيجريتور
 updateConfigurator();
 
-// قسم الكاميرا (يستخدم في قسم "افتح الكاميرا" و "مخطط منزلك الذكي")
+// =======================
+// قسم الكاميرا (افتح الكاميرا + المخطط)
+// =======================
 const startCamBtn = document.getElementById("start-camera");
 const stopCamBtn = document.getElementById("stop-camera");
 const startPlannerCamBtn = document.getElementById("start-planner-camera");
@@ -231,7 +251,7 @@ const overlayTextEl = document.getElementById("ar-overlay-text");
 let cameraStream = null;
 let analysisInterval = null;
 
-// كانفس مخفية لتحليل الفريم (لقسم "افتح الكاميرا" فقط)
+// كانفس لتحليل الفريم
 const analysisCanvas = document.createElement("canvas");
 const analysisCtx = analysisCanvas.getContext("2d");
 analysisCanvas.width = 160;
@@ -250,13 +270,23 @@ function attachStreamToVideos() {
 }
 
 function analyzeFrame() {
-    // نستخدم فيديو "افتح الكاميرا" للتحليل، لو موجود
     const videoSource = mainVideoEl || plannerVideoEl;
     if (!videoSource || videoSource.readyState < 2 || !analysisCtx || !overlayTextEl) return;
 
     try {
-        analysisCtx.drawImage(videoSource, 0, 0, analysisCanvas.width, analysisCanvas.height);
-        const frame = analysisCtx.getImageData(0, 0, analysisCanvas.width, analysisCanvas.height).data;
+        analysisCtx.drawImage(
+            videoSource,
+            0,
+            0,
+            analysisCanvas.width,
+            analysisCanvas.height
+        );
+        const frame = analysisCtx.getImageData(
+            0,
+            0,
+            analysisCanvas.width,
+            analysisCanvas.height
+        ).data;
 
         let totalBrightness = 0;
         const pixelCount = frame.length / 4;
@@ -282,16 +312,20 @@ function analyzeFrame() {
         }
         const avgVar = sampleCount ? varSum / sampleCount : 0;
 
-        let suggestion = "مكان عام جيد لأجهزة الطاقة الذكية.";
+        let suggestion = "صوّر مكان العطل أو الجهاز بوضوح.";
 
         if (avgBrightness > 175 && avgVar > 18) {
-            suggestion = "يبدو مكان خارجي مضيء 🌞 مناسب لألواح شمسية أو موقف شحن سيارة.";
+            suggestion =
+                "واضح أنك في مكان خارجي أو مضيء 🌞 ممتاز لتصوير المكيفات أو الوحدات الخارجية.";
         } else if (avgBrightness > 140 && avgVar < 16) {
-            suggestion = "واضح أنه جدار مضيء 🧱 مكان ممتاز لتركيب شاحن جداري أو لوحة تحكم.";
+            suggestion =
+                "يبدو جدار أو سطح ثابت 🧱 ركّز على مكان العطل أو أقرب فيشة كهرباء.";
         } else if (avgBrightness < 85) {
-            suggestion = "الإضاءة هنا ضعيفة 💡 حاول تختار مكان أفتح أو زِد الإضاءة قبل التركيب.";
+            suggestion =
+                "الإضاءة هنا ضعيفة 💡 حاول تشغّل ضوء إضافي أو تقرّب أكثر من مكان العطل.";
         } else {
-            suggestion = "يبدو مكان داخلي مناسب لأجهزة مثل تكييف أو ثلاجة ذكية.";
+            suggestion =
+                "مكان داخلي مناسب 👍 صوّر الجهاز المتعطّل أو منطقة التسريب من أكثر من زاوية.";
         }
 
         overlayTextEl.textContent = suggestion;
@@ -303,7 +337,8 @@ function analyzeFrame() {
 async function startCamera() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         if (cameraMsg) {
-            cameraMsg.textContent = "المتصفح لا يدعم فتح الكاميرا. جرّب متصفح أحدث مثل Chrome أو Edge.";
+            cameraMsg.textContent =
+                "المتصفح لا يدعم فتح الكاميرا. جرّب متصفح أحدث مثل Chrome أو Edge.";
         }
         return;
     }
@@ -316,15 +351,16 @@ async function startCamera() {
 
             cameraStream = await navigator.mediaDevices.getUserMedia({
                 video: {
-                    facingMode: "environment"
-                }
+                    facingMode: "environment",
+                },
             });
         }
 
         attachStreamToVideos();
 
         if (cameraMsg) {
-            cameraMsg.textContent = "وجّه الكاميرا نحو المكان اللي تفكر تركّب فيه الشاحن أو الجهاز.";
+            cameraMsg.textContent =
+                "وجّه الكاميرا نحو مكان العطل أو الجهاز وتأكد أنه ظاهر في منتصف الشاشة.";
         }
         if (overlayTextEl) {
             overlayTextEl.textContent = "جاري تحليل المشهد… ثبّت يدك شوي 👍";
@@ -332,11 +368,11 @@ async function startCamera() {
 
         if (analysisInterval) clearInterval(analysisInterval);
         analysisInterval = setInterval(analyzeFrame, 1200);
-
     } catch (err) {
         console.error(err);
         if (cameraMsg) {
-            cameraMsg.textContent = "ما قدرنا نفتح الكاميرا. تأكد من السماح بالوصول في إعدادات المتصفح.";
+            cameraMsg.textContent =
+                "ما قدرنا نفتح الكاميرا. تأكد من السماح بالوصول في إعدادات المتصفح.";
         }
         if (overlayTextEl) {
             overlayTextEl.textContent = "لم يتم فتح الكاميرا.";
@@ -366,7 +402,7 @@ function stopCamera() {
         cameraMsg.textContent = "تم إيقاف الكاميرا. يمكنك تشغيلها مرة أخرى في أي وقت.";
     }
     if (overlayTextEl) {
-        overlayTextEl.textContent = "هنا ممكن يركب الشاحن 👇";
+        overlayTextEl.textContent = "صوّر مكان العطل أو الجهاز بوضوح 👇";
     }
 }
 
