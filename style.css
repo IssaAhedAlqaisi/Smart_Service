@@ -132,8 +132,8 @@ body {
     font-weight: 600;
     cursor: pointer;
     font-size: 14px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
-        color 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s.ease, background 0.15s.ease,
+        color 0.15s.ease;
 }
 
 .btn-primary {
@@ -164,118 +164,44 @@ body {
 /* البانر الرئيسي */
 .hero {
     position: relative;
-    min-height: 85vh;
+    min-height: 150vh; /* مره ونص من الشاشة */
     padding: 80px 0 60px;
-    background: linear-gradient(120deg, rgba(255, 247, 207, 0.35), #ffffff);
+    background: linear-gradient(120deg, rgba(255, 247, 207, 0.25), #ffffff);
     overflow: hidden;
 }
 
-/* فيديو الخلفية (شريط ربع الصفحة) */
+/* فيديو الخلفية يغطي الهيرو كله */
 .hero-video {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    height: 25%;
+    height: 150vh;
     object-fit: cover;
     z-index: 0;
     filter: brightness(0.78);
 }
 
-/* طبقة الخلفية المتحركة */
+/* طبقة الخلفية المتحركة (مخفية – بدون شمس ولا خطوط) */
 .hero-visual-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* الشمس */
-.hero-sun {
-    position: absolute;
-    top: 10%;
-    left: 7%;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #fffbea 0%, #ffd700 40%, #ffbf00 70%, transparent 72%);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.6);
-    animation: sunGlow 3s ease-in-out infinite alternate;
-}
-
-/* خطوط الكهرباء */
-.energy-line {
-    position: absolute;
-    height: 3px;
-    border-radius: 999px;
-    background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 200, 0, 0.1),
-        rgba(255, 200, 0, 1),
-        rgba(255, 200, 0, 0.1),
-        transparent
-    );
-    background-size: 220% 100%;
-    animation: energyFlow 1.4s linear infinite;
-    filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.8));
-}
-
-.energy-line.line-roof {
-    top: 20%;
-    left: 18%;
-    width: 45%;
-    transform: rotate(3deg);
-}
-
-.energy-line.line-house {
-    top: 34%;
-    left: 32%;
-    width: 30%;
-    transform: rotate(90deg);
-}
-
-.energy-line.line-car {
-    top: 48%;
-    left: 45%;
-    width: 35%;
-    transform: rotate(5deg);
-}
-
-@keyframes sunGlow {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.5);
-    }
-    100% {
-        transform: scale(1.08);
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.7);
-    }
-}
-
-@keyframes energyFlow {
-    0% {
-        background-position: 220% 0;
-    }
-    100% {
-        background-position: -220% 0;
-    }
+    display: none;
 }
 
 /* تدرّج فوق الخلفية */
 .hero-overlay {
     position: absolute;
     inset: 0;
-    opacity: 0.08;
-    background-image: radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.4), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(255, 220, 80, 0.4), transparent 55%);
+    opacity: 0.12;
+    background-image: radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.45), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(255, 220, 80, 0.45), transparent 55%);
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
 }
 
 .hero-grid {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 32px;
@@ -886,7 +812,7 @@ body {
     }
 
     .hero-video {
-        height: 28%;
+        height: 140vh; /* شوي أقل على الموبايل */
     }
 }
 
@@ -906,7 +832,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0.4s.ease;
 }
 
 .charge-overlay.hidden {
