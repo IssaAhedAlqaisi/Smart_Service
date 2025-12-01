@@ -551,116 +551,6 @@ body {
     color: var(--text-muted);
 }
 
-/* مخطط منزلك الذكي */
-.smart-home-planner {
-    padding: 50px 0;
-    background: #ffffff;
-}
-
-.planner-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: 24px;
-    align-items: center;
-}
-
-.coming-soon {
-    font-size: 13px;
-    margin: 8px 0 10px;
-    color: var(--yellow-dark);
-}
-
-.planner-card {
-    background: var(--yellow-soft);
-    border-radius: var(--radius-lg);
-    padding: 18px 16px;
-    box-shadow: var(--shadow-soft);
-    font-size: 13px;
-}
-
-/* إطار فيديو المعاينة */
-.planner-video-wrapper {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: #000;
-    min-height: 220px;
-}
-
-#planner-video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    background: #000;
-}
-
-/* الشاحن الثلاثي الأبعاد (يمثل نقطة العمل) */
-.charger-3d {
-    position: absolute;
-    right: 18px;
-    top: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    pointer-events: none;
-}
-
-.charger-body {
-    width: 70px;
-    height: 110px;
-    border-radius: 16px;
-    background: linear-gradient(145deg, #ffffff, #e8e8e8);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35), inset 0 0 6px rgba(0, 0, 0, 0.05);
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.charger-light {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
-    border-radius: 999px;
-    background: radial-gradient(circle, #b3ff9c 0%, #5bd43e 50%, #2f8f1f 80%);
-    box-shadow: 0 0 8px rgba(91, 212, 62, 0.8);
-    animation: chargerGlow 1.6s ease-in-out infinite alternate;
-}
-
-.charger-port {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 10px;
-    border-radius: 7px;
-    background: #222;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
-}
-
-.charger-cable {
-    width: 8px;
-    height: 70px;
-    border-radius: 999px;
-    background: linear-gradient(to bottom, #111, #444);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes chargerGlow {
-    0% {
-        transform: translateX(-50%) scale(1);
-        box-shadow: 0 0 6px rgba(91, 212, 62, 0.7);
-    }
-    100% {
-        transform: translateX(-50%) scale(1.08);
-        box-shadow: 0 0 12px rgba(91, 212, 62, 1);
-    }
-}
-
 /* قسم الكاميرا */
 .ar-camera {
     padding: 60px 0;
@@ -718,6 +608,32 @@ body {
     border-radius: 999px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* معاينة الصورة */
+.snapshot-container {
+    margin-top: 30px;
+    padding: 18px 16px;
+    background: var(--yellow-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+.snapshot-container h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.snapshot-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+#snapshot-img {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* باقات الصيانة */
@@ -942,7 +858,6 @@ body {
 
     .hero-grid,
     .simulator-grid,
-    .planner-grid,
     .ar-grid,
     .config-grid,
     .contact-grid {
