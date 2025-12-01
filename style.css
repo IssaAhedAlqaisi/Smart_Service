@@ -61,16 +61,22 @@ body {
 }
 
 .logo-mark {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 999px;
-    background: var(--yellow-main);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--shadow-soft);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    box-shadow: var(--shadow-soft);
+    padding: 0;
+}
+
+.logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .logo-text {
@@ -160,30 +166,37 @@ body {
     position: relative;
     min-height: 85vh;
     padding: 80px 0 60px;
-    background:
-        linear-gradient(120deg, rgba(255, 247, 207, 0.25), rgba(255, 255, 255, 0.9)),
-        url("solar-house.png");
-    background-repeat: no-repeat, no-repeat;
-    background-position: center top, center bottom;
-    background-size: cover, 100%;
+    background: linear-gradient(120deg, rgba(255, 247, 207, 0.35), #ffffff);
     overflow: hidden;
+}
+
+/* فيديو الخلفية (شريط ربع الصفحة) */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.78);
 }
 
 /* طبقة الخلفية المتحركة */
 .hero-visual-layer {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: 1;
     pointer-events: none;
 }
 
 /* الشمس */
 .hero-sun {
     position: absolute;
-    top: 8%;
-    left: 10%;
-    width: 90px;
-    height: 90px;
+    top: 10%;
+    left: 7%;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background: radial-gradient(circle, #fffbea 0%, #ffd700 40%, #ffbf00 70%, transparent 72%);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.6);
@@ -209,21 +222,21 @@ body {
 }
 
 .energy-line.line-roof {
-    top: 28%;
+    top: 20%;
     left: 18%;
     width: 45%;
     transform: rotate(3deg);
 }
 
 .energy-line.line-house {
-    top: 45%;
+    top: 34%;
     left: 32%;
     width: 30%;
     transform: rotate(90deg);
 }
 
 .energy-line.line-car {
-    top: 62%;
+    top: 48%;
     left: 45%;
     width: 35%;
     transform: rotate(5deg);
@@ -253,16 +266,16 @@ body {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    opacity: 0.04;
+    opacity: 0.08;
     background-image: radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.4), transparent 55%),
         radial-gradient(circle at 80% 80%, rgba(255, 220, 80, 0.4), transparent 55%);
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-grid {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 32px;
@@ -870,6 +883,10 @@ body {
 
     .hero-dashboard {
         margin-top: 10px;
+    }
+
+    .hero-video {
+        height: 28%;
     }
 }
 
