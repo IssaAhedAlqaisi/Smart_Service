@@ -64,84 +64,88 @@
 
     <main>
         <!-- البانر الرئيسي -->
-        <section id="hero" class="hero">
+        <!-- البانر الرئيسي -->
+<section id="hero" class="hero">
 
-            <!-- فيديو الخلفية (شريط علوي) -->
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="assets/hero-smart.mp4" type="video/mp4" />
-            </video>
+    <!-- فيديو الخلفية (شريط علوي) -->
+    <video class="hero-video" autoplay muted loop playsinline>
+        <!-- هون المسار الجديد للفيديو -->
+        <source src="SmartService.mp4" type="video/mp4" />
+        متصفحك لا يدعم تشغيل الفيديو.
+    </video>
 
-            <!-- طبقة خلفية متحركة -->
-            <div class="hero-visual-layer">
-                <div class="hero-sun"></div>
-                <div class="energy-line line-roof"></div>
-                <div class="energy-line line-house"></div>
-                <div class="energy-line line-car"></div>
+    <!-- طبقة خلفية متحركة -->
+    <div class="hero-visual-layer">
+        <div class="hero-sun"></div>
+        <div class="energy-line line-roof"></div>
+        <div class="energy-line line-house"></div>
+        <div class="energy-line line-car"></div>
+    </div>
+
+    <!-- تدرّج فوق الخلفية -->
+    <div class="hero-overlay"></div>
+
+    <!-- المحتوى -->
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <h1>كل صيانة وتركيب بيتك في <span>شركة واحدة</span></h1>
+            <p>
+                Smart Service تجمع لك صيانة <strong>الإلكترونيات</strong>،
+                <strong>التكييف والتبريد</strong>، <strong>السباكة والديكورات</strong>،
+                مع <strong>تركيب شواحن سيارات كهربائية</strong> و<strong>ألواح طاقة شمسية</strong>
+                للمنازل والشركات.
+            </p>
+            <div class="hero-actions">
+                <a href="#energy-sections" class="btn-primary">شاهد أقسام الشركة</a>
+                <a href="#energy-simulator" class="btn-outline">احسب تكلفة الصيانة التقديرية</a>
             </div>
+            <div class="hero-tags">
+                <span>صيانة إلكترونيات</span>
+                <span>تكييف وتبريد</span>
+                <span>ألواح طاقة شمسية</span>
+                <span>شواحن سيارات كهربائية</span>
+            </div>
+        </div>
 
-            <!-- تدرّج فوق الخلفية -->
-            <div class="hero-overlay"></div>
-
-            <!-- المحتوى -->
-            <div class="container hero-grid">
-                <div class="hero-text">
-                    <h1>كل صيانة وتركيب بيتك في <span>شركة واحدة</span></h1>
-                    <p>
-                        Smart Service تجمع لك صيانة <strong>الإلكترونيات</strong>،
-                        <strong>التكييف والتبريد</strong>، <strong>السباكة والديكورات</strong>،
-                        مع <strong>تركيب شواحن سيارات كهربائية</strong> و<strong>ألواح طاقة شمسية</strong>
-                        للمنازل والشركات.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#energy-sections" class="btn-primary">شاهد أقسام الشركة</a>
-                        <a href="#energy-simulator" class="btn-outline">احسب تكلفة الصيانة التقديرية</a>
+        <div class="hero-dashboard">
+            <div class="dashboard-card home-energy">
+                <h3>أعطال عاجلة اليوم</h3>
+                <p>استجابة سريعة للأعطال الطارئة داخل عمان وضواحيها.</p>
+                <div class="metrics">
+                    <div>
+                        <span class="label">زيارات اليوم</span>
+                        <span class="value" id="home-today">18 زيارة</span>
                     </div>
-                    <div class="hero-tags">
-                        <span>صيانة إلكترونيات</span>
-                        <span>تكييف وتبريد</span>
-                        <span>ألواح طاقة شمسية</span>
-                        <span>شواحن سيارات كهربائية</span>
-                    </div>
-                </div>
-
-                <div class="hero-dashboard">
-                    <div class="dashboard-card home-energy">
-                        <h3>أعطال عاجلة اليوم</h3>
-                        <p>استجابة سريعة للأعطال الطارئة داخل عمان وضواحيها.</p>
-                        <div class="metrics">
-                            <div>
-                                <span class="label">زيارات اليوم</span>
-                                <span class="value" id="home-today">18 زيارة</span>
-                            </div>
-                            <div>
-                                <span class="label">متوسط وقت الوصول</span>
-                                <span class="value">60 دقيقة</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dashboard-connector">
-                        <span class="pulse-dot"></span>
-                        <span class="connector-line"></span>
-                    </div>
-
-                    <div class="dashboard-card mobility-energy">
-                        <h3>أنظمة تركيب وتشغيل</h3>
-                        <p>تركيب شواحن سيارات كهربائية وألواح طاقة شمسية مع متابعة وصيانة دورية.</p>
-                        <div class="metrics">
-                            <div>
-                                <span class="label">أنظمة طاقة مركبة</span>
-                                <span class="value" id="car-charge">+75 نظام</span>
-                            </div>
-                            <div>
-                                <span class="label">نسبة رضا العملاء</span>
-                                <span class="value">97٪</span>
-                            </div>
-                        </div>
+                    <div>
+                        <span class="label">متوسط وقت الوصول</span>
+                        <span class="value">60 دقيقة</span>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <div class="dashboard-connector">
+                <span class="pulse-dot"></span>
+                <span class="connector-line"></span>
+            </div>
+
+            <div class="dashboard-card mobility-energy">
+                <h3>أنظمة تركيب وتشغيل</h3>
+                <p>تركيب شواحن سيارات كهربائية وألواح طاقة شمسية مع متابعة وصيانة دورية.</p>
+                <div class="metrics">
+                    <div>
+                        <span class="label">أنظمة طاقة مركبة</span>
+                        <span class="value" id="car-charge">+75 نظام</span>
+                    </div>
+                    <div>
+                        <span class="label">نسبة رضا العملاء</span>
+                        <span class="value">97٪</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <!-- أقسام الشركة / الخدمات -->
         <section id="energy-sections" class="energy-sections">
