@@ -19,6 +19,7 @@ let chargeLevel = 0; // من 0 إلى 6
 let chargeInterval = null;
 let isCharging = false;
 
+// لو حاب تلغي شاشة الشحن بعد أول مرة:
 // if (localStorage.getItem("smartServiceCharged") === "1" && chargeOverlay) {
 //     chargeOverlay.classList.add("hidden");
 // }
@@ -401,7 +402,6 @@ function takeSnapshot() {
     if (!mainVideoEl || !snapshotCanvas || !snapshotCtx) return;
     if (mainVideoEl.readyState < 2) return;
 
-    // نضبط حجم الكانفس مثل الفيديو تقريباً
     snapshotCanvas.width = mainVideoEl.videoWidth || 640;
     snapshotCanvas.height = mainVideoEl.videoHeight || 480;
 
@@ -414,7 +414,6 @@ function takeSnapshot() {
         snapshotContainer.style.display = "block";
     }
 
-    // نحفظ الصورة كملف على جهاز المستخدم
     const now = new Date();
     const ts =
         now.getFullYear().toString() +
