@@ -177,7 +177,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     object-fit: cover;
     z-index: 0;
     filter: brightness(0.78);
@@ -812,7 +812,7 @@ body {
     }
 
     .hero-video {
-        height: 50vh; /* شوي أقل على الموبايل */
+        height: 40vh; /* شوي أقل على الموبايل */
     }
 }
 
