@@ -829,9 +829,16 @@ body {
 
 /* موبايل */
 @media (max-width: 900px) {
-    .nav-links {
-        display: none;
+    .hero {
+        padding-top: 140px !important;   /* 🔥 نزل المحتوى لتحت */
+        min-height: auto;
     }
+
+    .hero-grid {
+        margin-top: 40px !important;     /* 🔥 نزل الكروت والكلام أكثر */
+    }
+}
+
 
     .hero-grid,
     .simulator-grid,
