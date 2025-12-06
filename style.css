@@ -164,7 +164,7 @@ body {
 /* البانر الرئيسي */
 .hero {
     position: relative;
-    min-height: 150vh; /* مره ونص من الشاشة */
+    min-height: 175vh; /* مره ونص من الشاشة */
     padding: 80px 0 60px;
     background: linear-gradient(120deg, rgba(255, 247, 207, 0.25), #ffffff);
     overflow: hidden;
@@ -224,12 +224,6 @@ body {
 }
 
 .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-    margin-bottom: 14px;
-}
 
 .hero-tags {
     display: flex;
@@ -788,6 +782,24 @@ body {
     justify-content: space-between;
     gap: 6px;
 }
+
+/* وصف خاص للموبايل تحت الهيرو */
+.hero-mobile-desc {
+    display: none;         /* مخفي على الديسكتوب */
+    padding: 12px 0 0;
+}
+
+.hero-mobile-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.hero-mobile-text span {
+    color: var(--yellow-dark);
+}
+
+
 
 /* موبايل */
 @media (max-width: 900px) {
