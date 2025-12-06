@@ -132,7 +132,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     font-size: 14px;
-    transition: transform 0.15s ease, box-shadow 0.15s.ease, background 0.15s.ease,
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
         color 0.15s.ease;
 }
 
@@ -164,20 +164,20 @@ body {
 /* البانر الرئيسي */
 .hero {
     position: relative;
-    min-height: 175vh; /* مره ونص من الشاشة */
+    min-height: 175vh; /* اطول على الديسكتوب */
     padding: 80px 0 60px;
     background: linear-gradient(120deg, rgba(255, 247, 207, 0.25), #ffffff);
     overflow: hidden;
 }
 
-/* فيديو الخلفية يغطي الهيرو كله */
+/* فيديو الخلفية يغطي الهيرو */
 .hero-video {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 65vh;
+    height: 65vh; /* أكبر عشان تفاصيل الفيديو تبين */
     object-fit: cover;
     z-index: 0;
     filter: brightness(0.78);
@@ -210,20 +210,46 @@ body {
 
 .hero-text h1 {
     font-size: clamp(26px, 3vw, 34px);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .hero-text h1 span {
     color: var(--yellow-dark);
 }
 
-.hero-text p {
-    font-size: 15px;
-    color: var(--text-muted);
-    max-width: 480px;
+/* أزرار الهيرو (الكروت) */
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    margin-bottom: 10px;
 }
 
-.hero-actions {
+.hero-btn {
+    flex: 1 1 0;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* نفس شكل الكرت الأول للثاني */
+.hero-btn-secondary {
+    /* نفس .btn-primary فما في حاجة نغير اللون، بس ممكن نتركه للاستقبال */
+}
+
+/* سكشن تحت الهيرو للوصف الرمادي والتاقات */
+.hero-details {
+    padding: 16px 0 32px;
+    background: #ffffff;
+}
+
+.hero-desc {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 780px;
+}
 
 .hero-tags {
     display: flex;
@@ -787,19 +813,19 @@ body {
 .hero-mobile-desc {
     display: none;         /* مخفي على الديسكتوب */
     padding: 12px 0 0;
+    background: #ffffff;
 }
 
 .hero-mobile-text {
     text-align: center;
     font-size: 18px;
     font-weight: 600;
+    margin: 0;
 }
 
 .hero-mobile-text span {
     color: var(--yellow-dark);
 }
-
-
 
 /* موبايل */
 @media (max-width: 900px) {
@@ -817,14 +843,30 @@ body {
 
     .hero {
         padding-top: 90px;
-    }
-
-    .hero-dashboard {
-        margin-top: 10px;
+        min-height: auto; /* ما نطولها كثير على الموبايل */
     }
 
     .hero-video {
-        height: 40vh; /* شوي أقل على الموبايل */
+        height: 40vh; /* أقل على الموبايل */
+    }
+
+    /* نخفي عنوان الهيرو فوق الفيديو على الموبايل */
+    .hero-text h1 {
+        display: none;
+    }
+
+    /* نظهر العنوان تحت الهيرو */
+    .hero-mobile-desc {
+        display: block;
+    }
+
+    /* نخلي أزرار الهيرو جنب بعض برضه على الموبايل */
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-btn {
+        font-size: 13px;
     }
 }
 
@@ -844,7 +886,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: opacity 0.4s ease, visibility 0.4s.ease;
+    transition: opacity 0.4s.ease, visibility 0.4s.ease;
 }
 
 .charge-overlay.hidden {
