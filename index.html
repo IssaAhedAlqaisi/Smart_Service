@@ -63,81 +63,18 @@
     </header>
 
     <main>
-        <!-- البانر الرئيسي -->
+        <!-- البانر الرئيسي — فيديو فقط بدون محتوى -->
         <section id="hero" class="hero">
-
-            <!-- فيديو الخلفية -->
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="SmartService.mp4" type="video/mp4" />
                 متصفحك لا يدعم تشغيل الفيديو.
             </video>
 
-            <!-- طبقة الخلفية المتحركة (مخفية بالـ CSS) -->
-            <div class="hero-visual-layer">
-                <div class="hero-sun"></div>
-                <div class="energy-line line-roof"></div>
-                <div class="energy-line line-house"></div>
-                <div class="energy-line line-car"></div>
-            </div>
-
-            <!-- تدرّج فوق الخلفية -->
+            <!-- تدرّج لوني خفيف مدموج مع هوية الموقع -->
             <div class="hero-overlay"></div>
-
-            <!-- المحتوى -->
-            <div class="container hero-grid">
-                <div class="hero-text">
-                    <h1>كل صيانة وتركيب بيتك في <span>شركة واحدة</span></h1>
-
-                    <div class="hero-actions">
-                        <a href="#energy-sections" class="btn-primary hero-btn-main">
-                            شاهد أقسام الشركة
-                        </a>
-                        <a href="#energy-simulator" class="btn-primary hero-btn-secondary">
-                            احسب تكلفة الصيانة التقديرية
-                        </a>
-                    </div>
-                </div>
-
-                <div class="hero-dashboard">
-                    <div class="dashboard-card home-energy">
-                        <h3>أعطال عاجلة اليوم</h3>
-                        <p>استجابة سريعة للأعطال الطارئة داخل عمان وضواحيها.</p>
-                        <div class="metrics">
-                            <div>
-                                <span class="label">زيارات اليوم</span>
-                                <span class="value" id="home-today">18 زيارة</span>
-                            </div>
-                            <div>
-                                <span class="label">متوسط وقت الوصول</span>
-                                <span class="value">60 دقيقة</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dashboard-connector">
-                        <span class="pulse-dot"></span>
-                        <span class="connector-line"></span>
-                    </div>
-
-                    <div class="dashboard-card mobility-energy">
-                        <h3>أنظمة تركيب وتشغيل</h3>
-                        <p>تركيب شواحن سيارات كهربائية وألواح طاقة شمسية مع متابعة وصيانة دورية.</p>
-                        <div class="metrics">
-                            <div>
-                                <span class="label">أنظمة طاقة مركبة</span>
-                                <span class="value" id="car-charge">+75 نظام</span>
-                            </div>
-                            <div>
-                                <span class="label">نسبة رضا العملاء</span>
-                                <span class="value">97٪</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <!-- عنوان بسيط تحت الهيرو للموبايل -->
+        <!-- عنوان بسيط تحت الهيرو للموبايل والكمبيوتر -->
         <section class="hero-mobile-desc">
             <div class="container">
                 <p class="hero-mobile-text">
@@ -146,9 +83,18 @@
             </div>
         </section>
 
-        <!-- تفاصيل الهيرو (الوصف الرمادي والتاقات) -->
+        <!-- تفاصيل الهيرو (الوصف الرمادي والتاقات والأزرار) -->
         <section class="hero-details">
             <div class="container">
+                <div class="hero-details-actions">
+                    <a href="#energy-sections" class="btn-primary hero-btn-main">
+                        شاهد أقسام الشركة
+                    </a>
+                    <a href="#energy-simulator" class="btn-primary hero-btn-secondary">
+                        احسب تكلفة الصيانة التقديرية
+                    </a>
+                </div>
+
                 <p class="hero-desc">
                     Smart Service تجمع لك صيانة <strong>الإلكترونيات</strong>،
                     <strong>التكييف والتبريد</strong>، <strong>السباكة والديكورات</strong>،
