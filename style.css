@@ -25,11 +25,11 @@ body {
     background: var(--white);
     color: var(--text-main);
     scroll-behavior: smooth;
+    overflow-x: hidden;        /* منع الحركة يمين/يسار */
 }
 
 body {
     line-height: 1.7;
-    overflow-x: hidden;
 }
 
 .container {
@@ -135,7 +135,7 @@ body {
     transition: transform 0.15s ease,
         box-shadow 0.15s ease,
         background 0.15s ease,
-        color 0.15s.ease;
+        color 0.15s ease;
 }
 
 .btn-primary {
@@ -198,13 +198,13 @@ body {
         radial-gradient(circle at 80% 90%, rgba(255, 247, 207, 0.45), transparent 55%);
 }
 
-/* النص في وسط الهيرو (Smart Service) */
+/* العنوان في وسط الهيرو */
 .hero-center {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: flex;
-    align-items: center;         /* ديسكتوب: تقريباً منتصف */
+    align-items: center;
     justify-content: center;
     pointer-events: none;
     text-align: center;
@@ -761,7 +761,7 @@ body {
 
     /* الهيدر على الموبايل */
     .navbar {
-        border-bottom: none; /* بدون الخط الأبيض السميك */
+        border-bottom: none; /* بدون الخط الأبيض */
         background: rgba(255, 255, 255, 0.96);
     }
 
@@ -775,25 +775,23 @@ body {
     }
 
     .nav-link.nav-desktop-only {
-        display: none;   /* نخفي الروابط الإضافية */
+        display: none;   /* نخفي الباقي */
     }
 
     .nav-cta {
         padding: 8px 14px;
         font-size: 13px;
         white-space: nowrap;
-        margin-top: 0;
     }
 
     .hero {
-        min-height: 70vh;           /* شاشة محترمة على الموبايل */
+        min-height: 60vh;           /* زووم أوت أكثر على الموبايل */
     }
 
     .hero-video {
         object-fit: cover;          /* يعبّي مساحة الهيرو كاملة */
         object-position: center center;
         background: #000;
-        transform: none;            /* بدون زووم ولا تصغير */
     }
 
     .hero-center {
@@ -827,7 +825,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: opacity 0.4s ease, visibility 0.4s.ease;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 .charge-overlay.hidden {
@@ -868,7 +866,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.15s ease, box-shadow 0.15s.ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .charge-ring:active {
