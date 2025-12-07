@@ -765,6 +765,21 @@ body {
         background: rgba(255, 255, 255, 0.96);
     }
 
+    .nav-content {
+        flex-wrap: wrap;        /* عشان العناصر ما تطلع برا الشاشة */
+        row-gap: 8px;
+    }
+
+    .logo-mark {
+        width: 64px;           /* عرض أكبر لشعار أفقي */
+        height: 40px;
+        border-radius: 16px;
+    }
+
+    .logo-mark img {
+        object-fit: contain;   /* يبين الشعار كامل */
+    }
+
     .logo-subtitle {
         display: none;  /* نوفر مساحة */
     }
@@ -779,16 +794,15 @@ body {
     }
 
     .nav-cta {
-        padding: 8px 14px;
-        font-size: 13px;
+        padding: 7px 12px;     /* تصغير بسيط للزر */
+        font-size: 12px;
         white-space: nowrap;
     }
 
     .hero {
-        min-height: 100vh;           /* شاشة كاملة على الموبايل */
+        min-height: 85vh;      /* زووم أوت بسيط للهيرو على الموبايل */
     }
 
-    /* بخلّي نفس ال cover على الموبايل */
     .hero-video {
         object-fit: cover;
         object-position: center center;
