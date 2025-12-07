@@ -175,17 +175,16 @@ body {
     overflow: hidden;
 }
 
-/* الفيديو يغطي كل الهيرو */
+/* الفيديو يغطي كل الهيرو (نفس السلوك للموبايل والديسكتوب) */
 .hero-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;          /* يغطي كامل الهيرو بدون فراغات */
     object-position: center center;
     z-index: 0;
-    transform: scale(1.12);   /* نفس الزووم الحلو اللي اتفقنا عليه */
-    max-width: none;
+    /* شِلنا أي transform عشان ياخذ الفيديو كامل بدون قص زايد */
 }
 
 /* تدرّج لوني خفيف مدموج مع الهوية */
@@ -219,7 +218,7 @@ body {
     text-transform: uppercase;
     font-size: clamp(22px, 4vw, 34px);
     color: #fff;
-    padding: 10px 40px;   /* هنا عرضنا الكلمة أكثر */
+    padding: 10px 40px;   /* عرّضنا الكلمة */
     border-radius: 999px;
     backdrop-filter: blur(12px);
     background: linear-gradient(
@@ -810,10 +809,6 @@ body {
 
     .hero {
         min-height: 100vh;
-    }
-
-    .hero-video {
-        transform: scale(1.02);  /* زووم أوت أكثر على الموبايل */
     }
 
     .hero-center {
