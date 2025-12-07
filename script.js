@@ -19,6 +19,11 @@ let chargeLevel = 0; // من 0 إلى 6
 let chargeInterval = null;
 let isCharging = false;
 
+// لو حاب تلغي شاشة الشحن بعد أول مرة:
+// if (localStorage.getItem("smartServiceCharged") === "1" && chargeOverlay) {
+//     chargeOverlay.classList.add("hidden");
+// }
+
 function updateChargeDots(level) {
     chargeDots.forEach((dot, index) => {
         if (index < level) {
@@ -37,6 +42,8 @@ function finishCharging() {
     if (chargeStatus) {
         chargeStatus.textContent = "تم الشحن ✅ جاري الدخول للموقع...";
     }
+
+    // localStorage.setItem("smartServiceCharged", "1");
 
     setTimeout(() => {
         if (chargeOverlay) {
@@ -225,7 +232,7 @@ configCheckboxes.forEach((cb) => {
 updateConfigurator();
 
 // =======================
-// قسم الكاميرا
+// قسم الكاميرا (مكان واحد فقط)
 // =======================
 const startCamBtn = document.getElementById("start-camera");
 const stopCamBtn = document.getElementById("stop-camera");
