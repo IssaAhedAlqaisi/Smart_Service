@@ -768,20 +768,20 @@ body {
 /* ================= موبايل ================= */
 @media (max-width: 900px) {
 
-    /* الهيدر على الموبايل */
+    /* الهيدر على الموبايل (أرق) */
     .navbar {
         border-bottom: none; /* بدون الخط الأبيض */
         background: rgba(255, 255, 255, 0.96);
     }
 
     .nav-content {
-        padding-block: 8px;
-        flex-wrap: wrap;              /* يخلي العناصر تنزل سطرين اذا ضاق العرض */
-        gap: 8px;
+        padding-block: 4px;    /* قللنا السماكة */
+        flex-wrap: wrap;       /* سطرين لو لزم */
+        gap: 6px;
     }
 
     .logo-mark {
-        width: 80px;   /* أكبر مرتين تقريبا */
+        width: 80px;   /* أكبر */
         height: 80px;
     }
 
@@ -812,14 +812,15 @@ body {
         min-height: 100vh;
     }
 
-    /* زووم أوت بسيط للفيديو على الموبايل */
+    /* نشيل الزووم عن الفيديو + نضبط مكانه
+       عشان يعبّي الهيرو بدون إطار */
     .hero-video {
-        transform: scale(0.9);
-        transform-origin: center center;
+        object-fit: cover;
+        object-position: 50% 40%; /* حركنا المشهد شوي */
     }
 
     .hero-center {
-        padding-bottom: 12vh;   /* ننزله شوي لتحت عن الديسكتوب */
+        padding-bottom: 11vh;   /* نزّلنا العنوان شوي لتحت */
     }
 
     .hero-details-actions {
