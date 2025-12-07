@@ -766,18 +766,23 @@ body {
     }
 
     .nav-content {
-        flex-wrap: wrap;        /* عشان العناصر ما تطلع برا الشاشة */
-        row-gap: 8px;
+        flex-wrap: wrap;
+        row-gap: 4px;
+        padding-block: 4px;     /* أنحف */
     }
 
     .logo-mark {
-        width: 64px;           /* عرض أكبر لشعار أفقي */
-        height: 40px;
-        border-radius: 16px;
+        width: 60px;
+        height: 36px;
+        border-radius: 14px;
     }
 
     .logo-mark img {
-        object-fit: contain;   /* يبين الشعار كامل */
+        object-fit: contain;
+    }
+
+    .logo-title {
+        font-size: 16px;
     }
 
     .logo-subtitle {
@@ -785,8 +790,12 @@ body {
     }
 
     .nav-links {
-        gap: 10px;
-        font-size: 13px;
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .nav-link {
+        padding: 5px 10px;
     }
 
     .nav-link.nav-desktop-only {
@@ -794,26 +803,27 @@ body {
     }
 
     .nav-cta {
-        padding: 7px 12px;     /* تصغير بسيط للزر */
+        padding: 6px 12px;
         font-size: 12px;
         white-space: nowrap;
-        margin-top: -4px;      /* رفع الزر شوي لفوق */
+        margin-top: -2px;      /* رفع الزر شوي لفوق */
     }
 
     .hero {
-        min-height: 80vh;      /* زووم أوت أكثر للهيرو على الموبايل */
+        min-height: 65vh;      /* زووم أوت أكثر للهيرو */
     }
 
     .hero-video {
         object-fit: cover;
         object-position: center center;
         background: #000;
+        transform: scale(0.8); /* Zoom out للفيديو */
     }
 
     /* نزّل عنوان Smart Service شوي لتحت */
     .hero-center {
         align-items: flex-end;
-        padding-bottom: 12vh;
+        padding-bottom: 10vh;
     }
 
     .hero-details-actions {
