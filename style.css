@@ -76,7 +76,8 @@ body {
 .logo-mark img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;   /* يبين اللوجو كامل جوّا الإطار */
+    padding: 2px;
 }
 
 .logo-text {
@@ -198,16 +199,17 @@ body {
         radial-gradient(circle at 80% 90%, rgba(255, 247, 207, 0.45), transparent 55%);
 }
 
-/* العنوان في وسط الهيرو */
+/* العنوان داخل الهيرو */
 .hero-center {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: flex;
-    align-items: center;
+    align-items: flex-end;   /* ننزله لتحت */
     justify-content: center;
     pointer-events: none;
     text-align: center;
+    padding-bottom: 12vh;    /* مسافة من أسفل الهيرو (ديسكتوب) */
 }
 
 .hero-title-main {
@@ -228,7 +230,15 @@ body {
                 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-/* عنوان تحت الهيرو */
+/* تكبير العنوان أكثر على الديسكتوب */
+@media (min-width: 901px) {
+    .hero-title-main {
+        font-size: 44px;
+        padding: 14px 40px;
+    }
+}
+
+/* عنوان بسيط تحت الهيرو */
 .hero-mobile-desc {
     padding: 20px 0 4px;
     background: #ffffff;
@@ -765,6 +775,15 @@ body {
         background: rgba(255, 255, 255, 0.96);
     }
 
+    .nav-content {
+        padding-block: 8px;   /* نخلي الشريط أنحف شوي */
+    }
+
+    .logo-mark {
+        width: 40px;
+        height: 40px;
+    }
+
     .logo-subtitle {
         display: none;  /* نوفر مساحة */
     }
@@ -779,8 +798,8 @@ body {
     }
 
     .nav-cta {
-        padding: 8px 14px;
-        font-size: 13px;
+        padding: 6px 12px;  /* زر أصغر شوي عشان يبين كامل */
+        font-size: 12px;
         white-space: nowrap;
     }
 
@@ -789,14 +808,13 @@ body {
     }
 
     .hero-video {
-        object-fit: cover;          /* يعبّي مساحة الهيرو كاملة */
+        object-fit: cover;
         object-position: center center;
         background: #000;
     }
 
     .hero-center {
-        align-items: center;
-        padding-bottom: 6vh;        /* ينزل النص شوي لتحت */
+        padding-bottom: 9vh;        /* ننزله شوي بس أقل من الديسكتوب */
     }
 
     .hero-details-actions {
