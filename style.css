@@ -163,156 +163,89 @@ body {
     width: 100%;
 }
 
-/* البانر الرئيسي */
+/* ===================== */
+/* البانر الرئيسي (فيديو) */
+/* ===================== */
+
 .hero {
     position: relative;
-    min-height: 100vh; /* ديسكتوب: ياخذ ارتفاع الشاشة */
-    padding: 100px 0 60px;
-    background: linear-gradient(120deg, rgba(255, 247, 207, 0.25), #ffffff);
+    min-height: calc(100vh - 70px); /* تقريباً طول الشاشة مع احتساب النافبار */
+    padding: 0;
+    background: #000; /* خلفية احتياطية لو الفيديو ما اشتغل */
     overflow: hidden;
 }
 
-/* فيديو الخلفية يغطي الهيرو كله */
+/* الفيديو يغطي كامل الهيرو على الموبايل والكمبيوتر */
 .hero-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     z-index: 0;
-    filter: brightness(0.78);
 }
 
-/* طبقة الخلفية المتحركة (مخفية) */
-.hero-visual-layer {
-    display: none;
-}
-
-/* تدرّج فوق الخلفية */
+/* تدرّج لوني خفيف مدموج مع هوية الموقع */
 .hero-overlay {
     position: absolute;
     inset: 0;
-    opacity: 0.12;
-    background-image:
-        radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.45), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(255, 220, 80, 0.45), transparent 55%);
-    pointer-events: none;
     z-index: 1;
+    pointer-events: none;
+    /* خلط بين شفاف وأسـفر خفيف فوق الفيديو */
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent 40%),
+        radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.35), transparent 55%),
+        radial-gradient(circle at 80% 90%, rgba(255, 247, 207, 0.5), transparent 55%);
+    mix-blend-mode: normal;
 }
 
-.hero-grid {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: 32px;
-    align-items: center;
+/* عنوان تحت الهيرو */
+.hero-mobile-desc {
+    padding: 20px 0 4px;
+    background: #ffffff;
 }
 
-.hero-text h1 {
-    font-size: clamp(26px, 3vw, 34px);
-    margin-bottom: 12px;
+.hero-mobile-text {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
 }
 
-.hero-text h1 span {
+.hero-mobile-text span {
     color: var(--yellow-dark);
 }
 
-/* زرّين الهيرو */
-.hero-actions {
+/* تفاصيل الهيرو */
+.hero-details {
+    padding: 18px 0 8px;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.hero-details-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 18px;
+    margin-bottom: 14px;
 }
 
-/* الكروت */
-.hero-dashboard {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
+.hero-btn-main,
+.hero-btn-secondary {
+    font-size: 14px;
 }
 
-.dashboard-card {
-    background: #ffffff;
-    border-radius: var(--radius-lg);
-    padding: 18px 16px;
+/* نخلي الزر الثاني أخف شوي */
+.hero-btn-secondary {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: none;
+}
+
+.hero-btn-secondary:hover {
+    background: var(--yellow-soft);
     box-shadow: var(--shadow-soft);
-    width: 100%;
-    max-width: 260px;
-}
-
-.dashboard-card h3 {
-    margin: 0 0 4px;
-    font-size: 16px;
-}
-
-.dashboard-card p {
-    margin: 0 0 12px;
-    font-size: 13px;
-    color: var(--text-muted);
-}
-
-.metrics {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 13px;
-}
-
-.metrics .label {
-    color: var(--text-muted);
-    display: block;
-}
-
-.metrics .value {
-    font-weight: 700;
-}
-
-/* موصل الطاقة */
-.dashboard-connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.pulse-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    background: var(--yellow-main);
-    box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.4);
-    animation: pulse 1.8s infinite;
-}
-
-.connector-line {
-    width: 3px;
-    height: 80px;
-    border-radius: 999px;
-    background: linear-gradient(to bottom, var(--yellow-main), transparent);
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.4);
-    }
-    70% {
-        transform: scale(1.4);
-        box-shadow: 0 0 0 10px rgba(255, 200, 0, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 200, 0, 0);
-    }
-}
-
-/* وصف الهيرو تحت الفيديو */
-.hero-details {
-    padding: 24px 0 8px;
-    background: #ffffff;
 }
 
 .hero-desc {
@@ -332,24 +265,6 @@ body {
     padding: 4px 10px;
     border-radius: 999px;
     background: rgba(255, 200, 0, 0.2);
-}
-
-/* عنوان خاص للموبايل */
-.hero-mobile-desc {
-    display: none; /* يظهر فقط على الموبايل */
-    padding: 16px 0 0;
-    background: #ffffff;
-}
-
-.hero-mobile-text {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-}
-
-.hero-mobile-text span {
-    color: var(--yellow-dark);
 }
 
 /* أقسام الشركة */
@@ -821,27 +736,11 @@ body {
     }
 
     .hero {
-        padding-top: 90px;
-        min-height: 70vh; /* أقل شوي على الموبايل */
+        min-height: calc(100vh - 60px);
     }
 
-    .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-        row-gap: 20px;
-        margin-top: 10px;
-    }
-
-    /* نخفي العنوان من فوق الفيديو ونظهره تحت */
-    .hero-text h1 {
-        display: none;
-    }
-
-    .hero-mobile-desc {
-        display: block;
-    }
-
-    .hero-dashboard {
-        margin-top: 10px;
+    .hero-details-actions {
+        flex-direction: column;
     }
 
     .simulator-grid,
@@ -866,7 +765,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0.4s.ease;
 }
 
 .charge-overlay.hidden {
