@@ -100,7 +100,7 @@ body {
     font-size: 14px;
 }
 
-.nav-links a {
+.nav-link {
     text-decoration: none;
     color: var(--text-main);
     padding: 6px 10px;
@@ -108,7 +108,7 @@ body {
     transition: background 0.2s, transform 0.15s;
 }
 
-.nav-links a:hover {
+.nav-link:hover {
     background: var(--yellow-soft);
     transform: translateY(-1px);
 }
@@ -163,7 +163,7 @@ body {
 }
 
 /* ===================== */
-/* البانر الرئيسي (فيديو) */
+/* الهيرو (فيديو + عنوان) */
 /* ===================== */
 
 .hero {
@@ -757,18 +757,38 @@ body {
 
 /* ================= موبايل ================= */
 @media (max-width: 900px) {
-    /* اخفاء الهيدر الأبيض على الموبايل */
+
+    /* الهيدر على الموبايل */
     .navbar {
-        display: none;
+        border-bottom: none; /* بدون الخط الأبيض */
+        background: rgba(255, 255, 255, 0.96);
     }
 
-    /* الهيرو على الموبايل: أقصر + الفيديو كامل قدر الإمكان */
+    .logo-subtitle {
+        display: none;  /* نوفر مساحة */
+    }
+
+    .nav-links {
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .nav-link.nav-desktop-only {
+        display: none;   /* نخفي الباقي */
+    }
+
+    .nav-cta {
+        padding: 8px 14px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
     .hero {
-        min-height: 75vh;           /* أقل من الشاشة شوي */
+        min-height: 100vh;           /* شاشة كاملة على الموبايل */
     }
 
     .hero-video {
-        object-fit: contain;        /* يبان كامل قدر الإمكان */
+        object-fit: contain;         /* يشوف أكبر جزء ممكن بدون زوم */
         background: #000;
     }
 
