@@ -169,7 +169,7 @@ body {
 
 .hero {
     position: relative;
-    min-height: 100vh;      /* شاشة كاملة */
+    min-height: 100vh;      /* ديسكتوب شاشة كاملة */
     padding: 0;
     background: #000;
     overflow: hidden;
@@ -768,59 +768,59 @@ body {
 /* ================= موبايل ================= */
 @media (max-width: 900px) {
 
-    /* الهيدر على الموبايل (أرق) */
+    /* الهيدر على الموبايل (ربع الحجم تقريبا) */
     .navbar {
-        border-bottom: none; /* بدون الخط الأبيض */
+        border-bottom: none;
         background: rgba(255, 255, 255, 0.96);
     }
 
     .nav-content {
-        padding-block: 4px;    /* قللنا السماكة */
-        flex-wrap: wrap;       /* سطرين لو لزم */
-        gap: 6px;
+        padding-block: 3px;   /* كان 10px عالديسكتوب → خففناه كثير */
+        flex-wrap: wrap;
+        gap: 4px;
     }
 
     .logo-mark {
-        width: 80px;   /* أكبر */
-        height: 80px;
-    }
-
-    .logo-subtitle {
-        display: none;  /* نوفر مساحة */
+        width: 32px;   /* كان 44 → الآن أصغر بشكل واضح */
+        height: 32px;
     }
 
     .logo-title {
-        font-size: 15px;   /* أصغر شوي جنب اللوجو */
-    }
-
-    .nav-links {
-        gap: 10px;
         font-size: 13px;
     }
 
+    .logo-subtitle {
+        display: none;
+    }
+
+    .nav-links {
+        gap: 8px;
+        font-size: 12px;
+    }
+
     .nav-link.nav-desktop-only {
-        display: none;   /* نخفي الباقي */
+        display: none;
     }
 
     .nav-cta {
-        padding: 4px 10px;   /* أصغر عشان تبين كلها */
-        font-size: 11px;
+        padding: 3px 8px;   /* زر أصغر عشان يبين كامل */
+        font-size: 10px;
         white-space: nowrap;
     }
 
+    /* زووم أوت للهيرو: نخليه أقل من الشاشة كاملة
+       عشان يبان جزء أكبر من الفيديو */
     .hero {
-        min-height: 100vh;
+        min-height: 75vh;   /* كان 100vh للموبايل، هلق أقل شوي */
     }
 
-    /* نشيل الزووم عن الفيديو + نضبط مكانه
-       عشان يعبّي الهيرو بدون إطار */
     .hero-video {
         object-fit: cover;
-        object-position: 50% 40%; /* حركنا المشهد شوي */
+        object-position: 50% 35%; /* نطلع الكادر شوي لفوق، يبان أكثر من المشهد */
     }
 
     .hero-center {
-        padding-bottom: 11vh;   /* نزّلنا العنوان شوي لتحت */
+        padding-bottom: 11vh;   /* ننزل العنوان شوي لتحت */
     }
 
     .hero-details-actions {
