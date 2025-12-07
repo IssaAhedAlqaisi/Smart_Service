@@ -175,16 +175,15 @@ body {
     overflow: hidden;
 }
 
-/* الفيديو يغطي كل الهيرو (نفس السلوك للموبايل والديسكتوب) */
+/* الفيديو يغطي كل الهيرو */
 .hero-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;          /* يغطي كامل الهيرو بدون فراغات */
+    object-fit: cover;          /* يغطي كامل الهيرو */
     object-position: center center;
     z-index: 0;
-    /* شِلنا أي transform عشان ياخذ الفيديو كامل بدون قص زايد */
 }
 
 /* تدرّج لوني خفيف مدموج مع الهوية */
@@ -777,10 +776,12 @@ body {
 
     .nav-content {
         padding-block: 8px;
+        flex-wrap: wrap;              /* يخلي العناصر تنزل سطرين اذا ضاق العرض */
+        gap: 8px;
     }
 
     .logo-mark {
-        width: 80px;   /* ضعف الحجم تقريبا */
+        width: 80px;   /* أكبر مرتين تقريبا */
         height: 80px;
     }
 
@@ -789,7 +790,7 @@ body {
     }
 
     .logo-title {
-        font-size: 15px;   /* أصغر جنب اللوجو */
+        font-size: 15px;   /* أصغر شوي جنب اللوجو */
     }
 
     .nav-links {
@@ -802,13 +803,19 @@ body {
     }
 
     .nav-cta {
-        padding: 6px 12px;   /* أصغر شوي عشان تبين كلها */
-        font-size: 12px;
+        padding: 4px 10px;   /* أصغر عشان تبين كلها */
+        font-size: 11px;
         white-space: nowrap;
     }
 
     .hero {
         min-height: 100vh;
+    }
+
+    /* زووم أوت بسيط للفيديو على الموبايل */
+    .hero-video {
+        transform: scale(0.9);
+        transform-origin: center center;
     }
 
     .hero-center {
