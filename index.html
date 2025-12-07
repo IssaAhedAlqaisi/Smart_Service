@@ -49,37 +49,41 @@
                     <span class="logo-subtitle">صيانة وتركيب أنظمة المنزل والأجهزة</span>
                 </div>
             </div>
+
             <nav class="nav-links">
-                <a href="#hero">الرئيسية</a>
-                <a href="#energy-sections">أقسام الشركة</a>
-                <a href="#energy-simulator">حاسبة الصيانة</a>
-                <a href="#charging-configurator">باقات الصيانة</a>
-                <a href="#ar-camera">صوّر العطل</a>
-                <a href="#stories">قصص العملاء</a>
-                <a href="#knowledge">مركز المعرفة</a>
+                <!-- تظهر على الموبايل و الديسكتوب -->
+                <a href="#hero" class="nav-link nav-main">الرئيسية</a>
+                <a href="#energy-sections" class="nav-link nav-main">أقسام الشركة</a>
+
+                <!-- فقط ديسكتوب -->
+                <a href="#energy-simulator" class="nav-link nav-desktop-only">حاسبة الصيانة</a>
+                <a href="#charging-configurator" class="nav-link nav-desktop-only">باقات الصيانة</a>
+                <a href="#ar-camera" class="nav-link nav-desktop-only">صوّر العطل</a>
+                <a href="#stories" class="nav-link nav-desktop-only">قصص العملاء</a>
+                <a href="#knowledge" class="nav-link nav-desktop-only">مركز المعرفة</a>
             </nav>
+
+            <!-- زر اطلب فني يظهر على الكل -->
             <a href="#contact" class="btn-primary nav-cta">اطلب فني الآن</a>
         </div>
     </header>
 
     <main>
-        <!-- البانر الرئيسي — فيديو + عنوان في الوسط -->
+        <!-- الهيرو (فيديو + عنوان في الوسط) -->
         <section id="hero" class="hero">
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="SmartService.mp4" type="video/mp4" />
                 متصفحك لا يدعم تشغيل الفيديو.
             </video>
 
-            <!-- تدرّج لوني خفيف مدموج مع هوية الموقع -->
             <div class="hero-overlay"></div>
 
-            <!-- عنوان بالمنتصف -->
             <div class="hero-center">
-                <h1 class="hero-title-main">Smart Service</h1>
+                <div class="hero-title-main">Smart Service</div>
             </div>
         </section>
 
-        <!-- عنوان بسيط تحت الهيرو للموبايل والكمبيوتر -->
+        <!-- عنوان بسيط تحت الهيرو -->
         <section class="hero-mobile-desc">
             <div class="container">
                 <p class="hero-mobile-text">
@@ -88,7 +92,7 @@
             </div>
         </section>
 
-        <!-- تفاصيل الهيرو (الوصف الرمادي والتاقات والأزرار) -->
+        <!-- تفاصيل الهيرو (وصف + أزرار) -->
         <section class="hero-details">
             <div class="container">
                 <div class="hero-details-actions">
