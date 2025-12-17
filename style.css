@@ -262,6 +262,7 @@ body{ line-height:1.7; }
 
 /* تفاصيل الهيرو */
 .hero-details{
+  padding-top: 115px;
   padding:18px 0 8px;
   background:#ffffff;
   border-bottom:1px solid rgba(0,0,0,.03);
@@ -946,6 +947,7 @@ body{ line-height:1.7; }
     z-index:7;
     margin-top:-115px;  /* عدّلها بس لو بدك يطلع/ينزل */
     margin-bottom:10px;
+    transform: translateY(-255px);
     pointer-events:none;
   }
 
