@@ -901,6 +901,10 @@ body{ line-height:1.7; }
 ========================= */
 @media (max-width:900px){
 
+  .hero-details{
+    padding-top: 150px;   /* جرّب 150 أو 170 حسب ما بدك */
+  }
+
   /* الهيدر أصغر */
   .navbar{
     border-bottom:none;
