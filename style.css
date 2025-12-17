@@ -242,20 +242,29 @@ body {
 }
 
 /* عنوان بسيط تحت الهيرو */
-.hero-mobile-desc {
-    position: relative;
-    z-index: 2;
-    padding: 20px 0 4px;
-    background: #ffffff;
+.hero-mobile-desc{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100vh - 240px);   /* مكان النص فوق نهاية الهيرو */
+    z-index: 6;
+    background: transparent;    /* ✅ شيل الأبيض */
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
 }
 
 
-.hero-mobile-text {
+
+.hero-mobile-text{
     text-align: center;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 800;
     margin: 0;
+    color: #111;                /* نفس النص */
+    text-shadow: 0 8px 28px rgba(255,255,255,0.95); /* يخليه واضح بدون كرت */
 }
+
 
 .hero-mobile-text span {
     color: var(--yellow-dark);
@@ -774,6 +783,25 @@ body {
 
 /* ================= موبايل ================= */
 @media (max-width: 900px) {
+    .hero-mobile-desc{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(75vh - 120px); /* لأن الهيرو بالموبايل 75vh */
+        z-index: 6;
+        background: transparent;
+        padding: 0;
+        pointer-events: none;
+    }
+
+    .hero-mobile-text{
+        text-align: center;
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0;
+        color: #111;
+        text-shadow: 0 8px 28px rgba(255,255,255,0.95);
+    }
 
     /* الهيدر على الموبايل (ربع الحجم تقريبا) */
     .navbar {
