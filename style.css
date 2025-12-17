@@ -784,25 +784,20 @@ body {
 /* ================= موبايل ================= */
 @media (max-width: 900px) {
     .hero-mobile-desc{
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: calc(75vh - 120px); /* لأن الهيرو بالموبايل 75vh */
-        z-index: 6;
-        background: transparent;
-        padding: 0;
-        pointer-events: none;
-    }
+    position: relative;
+    z-index: 7;
+    background: transparent;     /* ✅ شيل الأبيض */
+    margin-top: -95px;           /* ✅ تطلع فوق بداية الأبيض */
+    padding: 0 0 8px;
+  }
 
     .hero-mobile-text{
-        text-align: center;
-        font-size: 22px;
-        font-weight: 800;
-        margin: 0;
-        color: #111;
-        text-shadow: 0 8px 28px rgba(255,255,255,0.95);
-    }
-
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    background: transparent;     /* ✅ شيل الأبيض */
+    text-shadow: 0 10px 30px rgba(255,255,255,0.95); /* يظل واضح */
+  }
     /* الهيدر على الموبايل (ربع الحجم تقريبا) */
     .navbar {
         border-bottom: none;
