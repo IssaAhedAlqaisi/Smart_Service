@@ -169,11 +169,15 @@ body {
 
 .hero {
     position: relative;
-    min-height: 100vh;      /* ديسكتوب شاشة كاملة */
-    padding: 0;
+    min-height: 100vh;
     background: #000;
     overflow: hidden;
+
+    /* الدمج مع الصفحة */
+    margin-bottom: -220px;
+    z-index: 1;
 }
+
 
 /* الفيديو يغطي كل الهيرو */
 .hero-video {
@@ -192,11 +196,17 @@ body {
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    background-image:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.30), transparent 45%),
-        radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.35), transparent 55%),
-        radial-gradient(circle at 80% 90%, rgba(255, 247, 207, 0.45), transparent 55%);
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.15) 35%,
+            rgba(255, 255, 255, 0.85) 75%,
+            #ffffff 100%
+        );
 }
+
 
 /* العنوان في وسط الهيرو */
 .hero-center {
@@ -239,9 +249,12 @@ body {
 
 /* عنوان بسيط تحت الهيرو */
 .hero-mobile-desc {
-    padding: 20px 0 4px;
+    position: relative;
+    z-index: 2;
+    padding: 200px 0 20px;
     background: #ffffff;
 }
+
 
 .hero-mobile-text {
     text-align: center;
@@ -811,7 +824,8 @@ body {
     /* زووم أوت للهيرو: نخليه أقل من الشاشة كاملة
        عشان يبان جزء أكبر من الفيديو */
     .hero {
-        min-height: 75vh;   /* كان 100vh للموبايل، هلق أقل شوي */
+        min-height: 70vh;
+        margin-bottom: -260px;
     }
 
     .hero-video {
