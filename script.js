@@ -445,7 +445,7 @@ function takeSnapshot() {
 
 // فتح إيميل جديد مع تعبئة العنوان والنص
 function openEmailWithSnapshot() {
-    const to = "Saleh-Abuali-531@hotmail.com";
+    const to = "info@smartservice-jo.com";
     const subject = encodeURIComponent("صورة جهاز / مكان عطل - Smart Service");
     const body = encodeURIComponent(
         "السلام عليكم,\n\n" +
